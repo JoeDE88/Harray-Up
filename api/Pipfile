@@ -1,0 +1,20 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+flask = "*"
+flask-admin = "*"
+flask-cors = "*"
+flask-migrate = "*"
+sqlalchemy = "*"
+gunicorn = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.12"
+
+[scripts]
+start="flask --app src/app run"
