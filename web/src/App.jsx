@@ -1,14 +1,15 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import Navbar from './Componentes/Navbar'
+import LevelBox from './Componentes/LevelBox'
+
 
 function App() {
-  
+
   return (
     <>
       <div>
-        Harray Up!
+        <Navbar></Navbar>
+        <LevelBox></LevelBox>
       </div>
     </>
   )
