@@ -1,7 +1,7 @@
 import './App.css'
 import Navbar from './Componentes/estructura/Navbar'
 import LevelBox from './Componentes/estructura/LevelBox'
-
+import {BuildArray} from  './Componentes/Draws'
 import React from "react";
 import CodeEditor from "./CodeEditor";
 
