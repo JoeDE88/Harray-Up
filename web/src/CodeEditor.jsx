@@ -2,22 +2,10 @@ import React, { useState } from "react";
 import { Editor } from "@monaco-editor/react";
 
 const CodeEditor = () => {
-  const [code, setCode] = useState(`
-// Declaración de un array
-let numeros = [1, 2, 3, 4, 5];
-
-// Agregar un elemento al final
-numeros.push(6);
-
-// Eliminar el último elemento
-numeros.pop();
-
-// Recorrer el array e imprimir cada número
-numeros.forEach(num => console.log(num));
-`);
+  const [code, setCode] = useState(null);
 
   return (
-    <div style={{ height: "500px", border: "1px solid #ddd" }}>
+    <div style={{ height: "300px", border: "1px solid #ddd" }}>
       <Editor
         height="100%"
         language="javascript" // Puedes cambiarlo a otro lenguaje
