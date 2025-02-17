@@ -1,31 +1,41 @@
 import { useState } from "react"
+import openingBracket from "../assets/icons/opening_bracket.png"
+
+
+
 let imgObject = {
-    opening_bracket:"web/src/assets/icons/opening_bracket.png",
-    closing_bracket:"web/src/assets/icons/closing_bracket.png",
-    comma:"web/src/assets/icons/comma.png",
-    apple:"web/src/assets/icons/apple.png",
-    banana:"web/src/assets/icons/banana.png",
-    cherry:"web/src/assets/icons/cherry.png",
-    grapes:"web/src/assets/icons/grapes.png",
-    lemon:"web/src/assets/icons/lemon.png",
-    mondarine:"web/src/assets/icons/mondarine.png",
-    pear:"web/src/assets/icons/pear.png",
-    pineapple:"web/src/assets/icons/pineapple.png",
-    strawberry:"web/src/assets/icons/strawberry.png",
+    opening_bracket:openingBracket,
+    closing_bracket:"src/assets/icons/closing_bracket.png",
+    comma:"src/assets/icons/comma.png",
+    apple:"src/assets/icons/apple.png",
+    banana:"src/assets/icons/banana.png",
+    cherry:"src/assets/icons/cherry.png",
+    grapes:"src/assets/icons/grapes.png",
+    lemon:"src/assets/icons/lemon.png",
+    mondarine:"src/assets/icons/mondarine.png",
+    pear:"src/assets/icons/pear.png",
+    pineapple:"src/assets/icons/pineapple.png",
+    strawberry:"src/assets/icons/strawberry.png",
 }
 
-export const BuildArray = ({initialArray})=>{
+export const BuildArray = ({initialArray,scale=4})=>{
     let [myArray,setMyArray]= useState(initialArray)
 
-return <div>
-    <img src={imgObject.opening_bracket}></img>
-    {myArray.map((element)=>{
+return <div  style={{display:"flex"}}>
+    <img style={{width:`${8 * scale}px`, height:`${30 * scale}px`, imageRendering:"pixelated"}} src={imgObject.opening_bracket}></img>
+    {myArray.map((element,index)=>{
+        if (index!==myArray.length-1){
         return <>
-        <img src={imgObject[element]}></img>
-        <img src={imgObject["comma"]}></img>
+        <img style={{width:`${23 * scale}px`, height:`${30 * scale}px`,imageRendering:"pixelated"}} src={imgObject[element]}></img>
+        <img style={{ width:`${6 * scale}px`, height:`${30 * scale}px`,imageRendering:"pixelated"}} src={imgObject["comma"]}></img>
         </>
-        
+        }
+        else{
+            return <>
+            <img style={{width:`${23 * scale}px`, height:`${30 * scale}px`,imageRendering:"pixelated"}} src={imgObject[element]}></img>
+            </>   
+        }
     })}
-    <img src={imgObject.closing_bracket}></img>
+    <img style={{width:`${8 *scale}px`, height:`${30 * scale}px`, imageRendering:"pixelated"}} src={imgObject.closing_bracket}></img>
 </div>
 }
