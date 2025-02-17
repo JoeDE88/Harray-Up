@@ -14,6 +14,7 @@ function App() {
         <LevelBox></LevelBox>
         <h1>Prueba tu código aquí</h1>
         <CodeEditor />
+        <BuildArray initialArray={["banana","strawberry","banana","pineapple"]}></BuildArray>
       </div>
     </>
   )
