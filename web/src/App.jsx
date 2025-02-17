@@ -4,6 +4,7 @@ import LevelBox from './Componentes/LevelBox'
 
 import React from "react";
 import CodeEditor from "./CodeEditor";
+import EditorEjecutor from './EditorEjecutor';
 
 function App() {
 
