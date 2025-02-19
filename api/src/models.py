@@ -13,11 +13,9 @@ class Users(db.Model):
     # Here we define columns for the table address.
     # Notice that each column is also a normal Python instance attribute.
     ID:int = db.Column(db.Integer, primary_key=True, unique=True)
-    first_name:str = db.Column(db.String(250), nullable=False)
-    last_name:str = db.Column(db.String(250), nullable=False)
     email:str = db.Column(db.String(250), nullable=False, unique=True)
     username:str = db.Column(db.String(250), nullable=False, unique=True)
-    password:str = db.Column(db.String(250), nullable=False)
+    password = db.Column(db.VARCHAR(0), nullable=False)
     def __repr__(self):
         return '<Users %r>' % self.username
 
