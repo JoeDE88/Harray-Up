@@ -1,5 +1,6 @@
 import React, { useState, useRef } from "react";
 import { Editor } from "@monaco-editor/react";
+import { Box } from "@mui/material";
 
 const CodeEditor = () => {
   const [code, setCode] = useState(null);
@@ -29,8 +30,8 @@ const CodeEditor = () => {
   };
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-      <div style={{ height: "300px", border: "1px solid #ddd" }}>
+    <Box style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+      <Box style={{ height: "300px", border: "1px solid #ddd" }}>
         <Editor
           height="100%"
           defaultLanguage="javascript"
@@ -39,12 +40,12 @@ const CodeEditor = () => {
           onChange={(newValue) => setCode(newValue)}
           options={{ fontSize: 16, minimap: { enabled: false }, automaticLayout: true }}
         />
-      </div>
+      </Box>
       <button onClick={runCode} style={{ padding: "10px", fontSize: "16px", cursor: "pointer" }}>
         Ejecutar Código
       </button>
       <iframe ref={iframeRef} title="output" style={{ width: "100%", height: "200px", border: "1px solid black" }} />
-    </div>
+    </Box>
   );
 };
 
