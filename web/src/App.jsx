@@ -12,7 +12,7 @@ function App() {
         <Navbar></Navbar>
         <LevelBox></LevelBox>
 
-<BuildArray initialArray={["banana", "strawberry", "banana", "pineapple"]}></BuildArray>
+<BuildArray initialArray={["banana",["banana"], "strawberry", "banana", "pineapple"]}></BuildArray>
 
       </div>
     </>
