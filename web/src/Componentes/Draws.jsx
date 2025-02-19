@@ -17,6 +17,7 @@ let imgObject = {
     pear: "src/assets/icons/pear.png",
     pineapple: "src/assets/icons/pineapple.png",
     strawberry: "src/assets/icons/strawberry.png",
+
 }
 
 export const BuildArray = ({ initialArray, scale = 3 }) => {
@@ -40,4 +41,5 @@ export const BuildArray = ({ initialArray, scale = 3 }) => {
                 <img style={{ width: `${8 * scale}px`, height: `${30 * scale}px`, imageRendering: "pixelated" }} src={imgObject.closing_bracket}></img>
         </Box>
     )
+
 }
