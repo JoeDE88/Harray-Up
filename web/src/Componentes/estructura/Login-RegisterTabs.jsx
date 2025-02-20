@@ -59,7 +59,7 @@ export default function LoginRegisterTabs() {
                 <UserInput ></UserInput>
                 </Box>
                 <div style={{ display: 'flex', justifyContent: 'center', marginTop: '30px' }}>
-                    <Button variant='contained' sx={{ backgroundColor: 'tertiary.main', color: 'tertiary.contrastText', padding: '5px 15px', fontSize: '1.5rem' }}>Login</Button>
+                    <Button variant='contained' sx={{ backgroundColor: 'tertiary.main', color: 'tertiary.contrastText', padding: '5px 15px', fontSize: '1.3rem' }}>Login</Button>
                 </div>
             </CustomTabPanel>
             <CustomTabPanel value={value} index={1}>
