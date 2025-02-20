@@ -22,7 +22,7 @@ let imgObject = {
 export const BuildArray = ({ initialArray, scale = 4 }) => {
 
     return (
-        <Box sx={{width:1}}>
+        <Box >
             <Box style={{ display: "flex"}}>
                 <img style={{ width: `${8 * scale}px`, height: `${30 * scale}px`, imageRendering: "pixelated" }} src={imgObject.opening_bracket}></img>
                 {initialArray.map((element, index) => {

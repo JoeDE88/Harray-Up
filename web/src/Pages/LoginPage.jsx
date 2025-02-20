@@ -1,14 +1,14 @@
 import React from "react";
 import { Box } from "@mui/material";
-import { theme } from "./theme/theme.js";
-import LoginRegisterTabs from "./Componentes/estructura/Login-RegisterTabs";
+import { theme } from "../theme/theme.js";
+import LoginRegisterTabs from "../Componentes/estructura/Login-RegisterTabs.jsx";
 import { AppBar } from "@mui/material";
-import Watermelon from './assets/icons/watermelon.png'
-import Background from "./assets/background.png"
+import Watermelon from '../assets/icons/watermelon.png'
+import Background from "../assets/background.png"
 import {Typography} from "@mui/material";
 
 
-export const LoginPage = () => {
+export default function LoginPage() {
   return (<>
       
 
