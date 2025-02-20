@@ -8,7 +8,7 @@ import Grid from '@mui/material/Grid2';
 import { Typography, useTheme } from '@mui/material';
 import CodeEditor from '../../CodeEditor';
 
-export default function LevelandResultBox() {
+export default function LevelandSnippetBox() {
 
     const [anchorEl, setAnchorEl] = React.useState(null);
     const handleClick = (event) => {
@@ -60,8 +60,8 @@ export default function LevelandResultBox() {
                     </Box>
                 </Grid>
                 <Grid size={6}>
-                    <Box sx={{ height: 400, borderRadius: 1, bgcolor: 'secondary.main', marginTop: '10px' }}>
-                        <h1>Prueba tu código aquí</h1>
+                    <Box sx={{ height: 400, borderRadius: 1, bgcolor: 'secondary.main',marginTop:'10px'}}>
+                        <Typography sx={{fontSize: '26px',marginLeft:'10px'}}>Prueba tu código aquí</Typography>
                         <CodeEditor></CodeEditor>
                     </Box>
                 </Grid>

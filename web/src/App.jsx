@@ -1,8 +1,8 @@
 import './App.css'
 import Navbar from './Componentes/estructura/Navbar'
-import LevelBox from './Componentes/estructura/LevelandResultBox'
-import { BuildArray } from './Componentes/Draws'
+import LevelBox from './Componentes/estructura/LevelandSnippetBox'
 import React from "react";
+import OutputArray from './Componentes/estructura/OutputArray';
 
 function App() {
 
@@ -11,8 +11,8 @@ function App() {
       <div>
         <Navbar></Navbar>
         <LevelBox></LevelBox>
+        <OutputArray></OutputArray>
 
-<BuildArray initialArray={["banana",["banana"], "strawberry", "banana", "pineapple"]}></BuildArray>
 
       </div>
     </>
