@@ -15,6 +15,11 @@ export default function () {
     return (
         <TextField
             required
+            sx={{
+                "& .MuiInputLabel-root": { 
+                    fontSize: "1.3rem"  // Cambia el tamaño del 
+                    }}}
+
             id="standard-password-input"
             label="Password"
             type="password"
@@ -23,5 +28,6 @@ export default function () {
             value={passwordValue}
             onChange={handlePasswordChange}
             variant="standard" />
+            
     )
 }

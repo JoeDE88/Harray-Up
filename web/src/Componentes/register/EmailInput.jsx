@@ -14,6 +14,7 @@ export default function EmailInput() {
 
     return (
         <TextField
+
             id="standard-required"
             label="Email"
             required
@@ -21,7 +22,9 @@ export default function EmailInput() {
             helperText={isEmailValid ? "Please enter a valid email address." : ""}
             value={emailValue}
             onChange={handleEmailChange}
-            sx={{ color: 'tertiary.contrastText'}}
+            sx={{ color: 'tertiary.contrastText', "& .MuiInputLabel-root": { 
+                fontSize: "1.3rem"}}}         
             variant="standard" />
+            
     )
 }
