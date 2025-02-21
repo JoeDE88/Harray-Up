@@ -1,7 +1,7 @@
 
 from flask_sqlalchemy import SQLAlchemy
-from dataclasses import dataclass
-from sqlalchemy import ForeignKey
+from dataclasses import dataclass,field
+from sqlalchemy import ForeignKey,Integer,String
 from enum import Enum
 
 db = SQLAlchemy()
@@ -14,7 +14,7 @@ class Users(db.Model):
     # Notice that each column is also a normal Python instance attribute.
     ID:int = db.Column(db.Integer, primary_key=True, unique=True)
     email:str = db.Column(db.String(250), nullable=False, unique=True)
-    username:str = db.Column(db.String(250), nullable=False, unique=True)
+    username:str = db.Column(db.String(250), unique=True)
     password = db.Column(db.VARCHAR(0), nullable=False)
     def __repr__(self):
         return '<Users %r>' % self.username
