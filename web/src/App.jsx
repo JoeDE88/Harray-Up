@@ -1,21 +1,18 @@
 import './App.css'
-import Navbar from './Componentes/estructura/Navbar'
-import LevelBox from './Componentes/estructura/LevelandResultBox'
-import { BuildArray } from './Componentes/Draws'
 import React from "react";
+import { Routes,Route} from "react-router"
+import HomePage from './Pages/HomePage';
+import LoginPage from './Pages/LoginPage';
+
+
 
 function App() {
 
   return (
-    <>
-      <div>
-        <Navbar></Navbar>
-        <LevelBox></LevelBox>
-
-<BuildArray initialArray={["banana",["banana"], "strawberry", "banana", "pineapple"]}></BuildArray>
-
-      </div>
-    </>
+    <Routes>
+      <Route path="/" element={<HomePage/>}/>
+      <Route path="/login" element={<LoginPage/>}/>
+    </Routes>
   )
 }
 

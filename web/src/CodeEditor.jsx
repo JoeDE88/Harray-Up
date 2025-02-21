@@ -33,18 +33,18 @@ const CodeEditor = () => {
     <Box style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
       <Box style={{ height: "300px", border: "1px solid #ddd" }}>
         <Editor
-          height="100%"
+          height="60%"
           defaultLanguage="javascript"
           theme="vs-light"
           value={code}
           onChange={(newValue) => setCode(newValue)}
           options={{ fontSize: 16, minimap: { enabled: false }, automaticLayout: true }}
         />
+        <button onClick={runCode} style={{ padding: "8px", fontSize: "16px", cursor: "pointer" }}>
+          Ejecutar Código
+        </button>
+        <iframe ref={iframeRef} title="output" style={{ width: "100%", height: "40%", border: "1px solid black" }} />
       </Box>
-      <button onClick={runCode} style={{ padding: "10px", fontSize: "16px", cursor: "pointer" }}>
-        Ejecutar Código
-      </button>
-      <iframe ref={iframeRef} title="output" style={{ width: "100%", height: "200px", border: "1px solid black" }} />
     </Box>
   );
 };
