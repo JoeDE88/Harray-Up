@@ -6,7 +6,6 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Watermelon from '../../assets/icons/watermelon.png'
 import Boton from './Boton';
-import BtnLoginModal from './BtnLoginModal';
 import { Button } from '@mui/material';
 
 
