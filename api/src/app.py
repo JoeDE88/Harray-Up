@@ -29,7 +29,7 @@ def sitemap():
 
 
 @app.route('/register',methods=['POST'])
-def handle_login():
+def handle_register():
     data = request.get_json(force=True)
     required_fields = {"email","password"}
     new_user = Users(
@@ -40,8 +40,40 @@ def handle_login():
     db.session.add(new_user)
     db.session.commit()
     return jsonify({"message":"User created successfully."}),200
-        
 
+
+@app.route('/login',methods=['POST'])
+def handle_login:
+    data = request.get_json(force=True)
+    data = request.get_json()
+    email = data["email"]
+    password = data["password"]
+
+    required_fields= ["email","password"]
+
+    if not all(field in data for field in required_fields):
+        return jsonify({"error": "Missing required fields", "missing": missing_fields}), 400
+    
+    user = Users.query.filter_by(email=email).first()
+
+    if not user:
+        return jsonify({"error":"Username not found"}), 400
+
+    is_password_valid = bcrypt.checkpw(password.encode('utf-8'),user.password.encode('utf-8'))
+
+    if not is_password_valid:
+        return jsonify({"error":"Password not correct"}), 400
+
+    access_token = create_access_token(identity=str(user.ID))
+    response = jsonify({
+        "msg": "login successful",
+        "user": user
+        })
+    
+    set_access_cookies(response,access_token)
+    
+    return response
+        
 @app.route("/health", methods=["GET"])
 def health_check():
     return jsonify({"status": "ok", "uptime": round(time.time() - start_time, 2)}), 200

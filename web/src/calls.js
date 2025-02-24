@@ -10,8 +10,7 @@ body: JSON.stringify({
     password: password,
   }),
 })
-.then((resp) => {return resp.json()})
-      .then((resp) => resp.json()) 
+.then((resp) => {return resp.json()}) 
       .then((data) => { console.log(data.message)
         
       })
@@ -30,7 +29,6 @@ export const register = (email,password)=>{
       }),
     })
     .then((resp) => {return resp.json()})
-          .then((resp) => resp.json()) 
           .then((data) => {
             console.log(data.message) 
           })
