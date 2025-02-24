@@ -1,6 +1,8 @@
 import { useTheme } from "@emotion/react";
 import { TextField } from "@mui/material";
 
+//Ya no se está usando este componente
+
 export default function UserInput(){
     
     return (
