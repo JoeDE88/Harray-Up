@@ -1,8 +1,8 @@
 
-
+let root="https://vigilant-zebra-v6qvqrjr9jggcx67x-5000.app.github.dev"
 
 export const login = (email,password)=>{
-fetch("https://vigilant-zebra-v6qvqrjr9jggcx67x-5000.app.github.dev/login",{
+fetch(`${root}/login`,{
 method:"POST",
 headers:{"Content-Type": "application/json"},
 body: JSON.stringify({
@@ -21,7 +21,7 @@ body: JSON.stringify({
  
 
 export const register = (email,password)=>{
-    fetch("https://vigilant-zebra-v6qvqrjr9jggcx67x-5000.app.github.dev/register",{
+    fetch(`${root}/register`,{
     method:"POST",
     headers:{"Content-Type": "application/json"},
     body: JSON.stringify({
