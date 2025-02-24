@@ -2,13 +2,12 @@ import *  as React from 'react';
 import { validateEmail } from '../../utils/validations';
 import { TextField } from '@mui/material';
 
-export default function EmailInput() {
-    const [emailValue, setEmailValue] = React.useState('');
+export default function EmailInput(onChange, value) {
     const [isEmailValid, setIsEmailValid] = React.useState(false);
 
     const handleEmailChange = (event) => {
         const newEmail = event.target.value;
-        setEmailValue(newEmail);
+        onChange(newEmail);
         setIsEmailValid(!validateEmail(newEmail));
     };
 
@@ -20,7 +19,7 @@ export default function EmailInput() {
             required
             error={isEmailValid}
             helperText={isEmailValid ? "Please enter a valid email address." : ""}
-            value={emailValue}
+            value={value}
             onChange={handleEmailChange}
             sx={{ color: 'tertiary.contrastText', "& .MuiInputLabel-root": { 
                 fontSize: "1.3rem"}}}         
