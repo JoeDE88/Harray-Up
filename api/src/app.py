@@ -33,7 +33,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 MIGRATE = Migrate(app, db)
 db.init_app(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
-CORS(app)
+CORS(app, supports_credentials=True)
 
 
 @app.route('/')
