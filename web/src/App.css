@@ -1,0 +1,4 @@
+/* Fondo rojo a la primera línea */
+.highlight-line {
+    background-color: red !important;
+  }

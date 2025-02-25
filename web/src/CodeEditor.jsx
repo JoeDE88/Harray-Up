@@ -1,56 +1,114 @@
-import React, { useState, useRef } from "react";
-import { Editor } from "@monaco-editor/react";
-import { Box, Typography, Button } from "@mui/material";
+import { useState, useRef, useContext } from 'react'; 
+import { Editor } from '@monaco-editor/react'; 
+import { Button, Box } from '@mui/material'; 
+import { useAppContext } from './AppContext';
 
-export default function CodeEditor() {
+function CodeEditor() {
+  const { setFruits } = useAppContext(); // Obtenemos setFruits del contexto
 
+  const initialCode = `
+function changeArray(array) {
+  // a partir de aquí el usuario puede modificar
+  output = []
+  
+  // a partir de aquí no
+  return output
+}
+
+let fruits = ["banana", "banana"]
+changeArray(fruits)
+`;
+
+  const [code, setCode] = useState(initialCode);
   const editorRef = useRef(null);
-  const [output, setOutput] = useState("");
 
-  function handleEditorDidMount(editor, monaco) {
-    editorRef.current = editor;
-  }
+  const checkCodeModification = (newCode) => {
+    const initialLines = initialCode.split('\n');
+    const newLines = newCode.split('\n');
 
-  function showValue() {
-    if (editorRef.current) {
-      const code = editorRef.current.getValue();
-      console.log(code);
-      
-      let consoleOutput = "";
-
-      // Captura console.log()
-      const originalConsoleLog = console.log;
-      console.log = (...args) => {
-        consoleOutput += args.join(" ") + "\n";
-      };
-
-      try {
-        new Function(`"use strict"; ${code}`)(); // Ejecuta el código
-        setOutput(consoleOutput || "Código ejecutado sin salida");
-      } catch (error) {
-        setOutput(`Error: ${error.message}`);
-      } finally {
-        console.log = originalConsoleLog; // Restaura console.log()
+    for (let i = 6; i < initialLines.length; i++) {
+      if (initialLines[i] !== newLines[i]) {
+        return true;
       }
     }
-  }
+    return false;
+  };
 
-    return (
-      <Box style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-        <Box style={{ height: "300px", border: "1px solid #ddd" }}>
-          <Editor
-            height="90%"
-            defaultLanguage="javascript"
-            defaultValue="// some comment"
-            onMount={handleEditorDidMount}
-          />
-          <Box>
-          <Button onClick={showValue} style={{ padding: "8px", fontSize: "16px", cursor: "pointer" }}>
-            Ejecutar Código
-          </Button>
-            <Typography>Salida:{output}</Typography>
-          </Box>
-        </Box>
+  const handleRun = () => {
+    if (checkCodeModification(code)) {
+      alert("No puedes modificar las líneas fuera de la función.");
+      return;
+    }
+
+    try {
+      let output;
+      const wrappedCode = `
+        ${code}
+        output = changeArray(fruits);
+      `;
+      eval(wrappedCode); // Ejecutamos el código del usuario
+      if (Array.isArray(output)) {
+        setFruits(output); // Actualizamos el estado global si output es un array
+        alert("Código ejecutado correctamente y fruits actualizado.");
+      } else {
+        alert("El código se ejecutó, pero 'output' no es un array.");
+      }
+    } catch (error) {
+      alert(`Error en el código: ${error.message}`);
+    }
+  };
+
+  const handleReset = () => {
+    setCode(initialCode);
+  };
+
+  return (
+    <Box sx={{ textAlign: 'center' }}>
+      <Editor
+        height="400px"
+        theme="vs-dark"
+        value={code}
+        language="javascript"
+        options={{
+          readOnly: false,
+          contextmenu: true,
+          scrollBeyondLastLine: false,
+          minimap: { enabled: false },
+          wordWrap: 'on',
+          fontSize: 20,
+        }}
+        onChange={(value) => setCode(value)}
+        editorDidMount={(editor) => {
+          editorRef.current = editor;
+        }}
+      />
+
+      <Box sx={{ display: 'flex', justifyContent: 'center', gap: 2, marginTop: 2 }}>
+        <Button 
+          variant="contained" 
+          onClick={handleRun}
+          color="tertiary"
+          sx={{
+            fontSize: '16px',
+            '&:hover': { backgroundColor: '#303f9f' },
+          }}
+        >
+          Run
+        </Button>
+        <Button 
+          color="tertiary"
+          variant="contained" 
+          onClick={handleReset}
+          sx={{
+            fontSize: '16px',
+            '&:hover': { backgroundColor: '#d32f2f' },
+          }}
+        >
+          Reset
+        </Button>
       </Box>
-    );
-  }
+    </Box>
+  );
+}
+
+export default CodeEditor;
