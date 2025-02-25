@@ -1,11 +1,13 @@
 import os
 import time
+import bcrypt
 
 from flask import Flask, jsonify,request
 from flask_migrate import Migrate
 from flask_cors import CORS
 from models import db, Users
 from random import randint
+
 
 app = Flask(__name__)
 start_time = time.time()
@@ -43,7 +45,7 @@ def handle_register():
 
 
 @app.route('/login',methods=['POST'])
-def handle_login:
+def handle_login():
     data = request.get_json(force=True)
     data = request.get_json()
     email = data["email"]
