@@ -9,7 +9,7 @@ db = SQLAlchemy()
     
 @dataclass     
 class Users(db.Model):
-    __tablename__ = 'Users'
+    __tablename__ = 'users'
     # Here we define columns for the table address.
     # Notice that each column is also a normal Python instance attribute.
     ID:int = db.Column(db.Integer, primary_key=True, unique=True)
@@ -20,7 +20,7 @@ class Users(db.Model):
 
 @dataclass
 class Dashboard(db.Model):
-    __tablename__ = 'Films'
+    __tablename__ = 'dashboard'
     # Here we define columns for the table address.
     # Notice that each column is also a normal Python instance attribute.
     ID:int = db.Column(db.Integer, primary_key=True, unique=True)
