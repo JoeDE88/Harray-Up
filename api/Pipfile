@@ -11,6 +11,7 @@ flask-migrate = "*"
 sqlalchemy = "*"
 gunicorn = "*"
 bcrypt = "*"
+flask-jwt-extended = "*"
 
 [dev-packages]
 
