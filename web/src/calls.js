@@ -1,5 +1,5 @@
 
-let root="https://vigilant-zebra-v6qvqrjr9jggcx67x-5000.app.github.dev"
+let root="https://cuddly-doodle-jgjjgpj99qp3qw75-5000.app.github.dev/"
 
 export const login = (email,password)=>{
 fetch(`${root}/login`,{

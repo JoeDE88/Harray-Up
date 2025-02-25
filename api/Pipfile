@@ -10,6 +10,7 @@ flask-cors = "*"
 flask-migrate = "*"
 sqlalchemy = "*"
 gunicorn = "*"
+bcrypt = "*"
 
 [dev-packages]
 
