@@ -8,6 +8,8 @@ import Grid from '@mui/material/Grid2';
 import { Typography, useTheme } from '@mui/material';
 import CodeEditor from '../../CodeEditor';
 
+
+
 export default function LevelandSnippetBox() {
 
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -36,7 +38,7 @@ export default function LevelandSnippetBox() {
                 <Grid size={6}>
                     <Box
                         sx={{
-                            height: 400,
+                            height: 500,
                             borderRadius: 1,
                             bgcolor: 'secondary.main',
                             marginTop: '10px'
@@ -60,7 +62,7 @@ export default function LevelandSnippetBox() {
                     </Box>
                 </Grid>
                 <Grid size={6}>
-                    <Box sx={{ height: 400, borderRadius: 1, bgcolor: 'secondary.main',marginTop:'10px'}}>
+                    <Box sx={{ height: 500, borderRadius: 1, bgcolor: 'secondary.main',marginTop:'10px'}}>
                         <Typography sx={{fontSize: '26px',marginLeft:'10px'}}>Prueba tu código aquí.</Typography>
                         <CodeEditor></CodeEditor>
                     </Box>
