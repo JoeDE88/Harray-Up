@@ -1,11 +1,11 @@
 import React from 'react';
-import { AppProvider } from './AppContext'; // Importa el contexto que creaste
+import { LevelProvider } from './Contexts/LevelContext.jsx'; // Importa el contexto que creaste
 import App from './App.jsx'; // Importa tu componente principal
 
 const ContextProvider = () => (
-  <AppProvider>
+  <LevelProvider>
     <App />
-  </AppProvider>
+  </LevelProvider>
 );
 
 export default ContextProvider;
