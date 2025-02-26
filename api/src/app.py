@@ -5,7 +5,7 @@ import bcrypt
 from flask import Flask, jsonify,request
 from flask_migrate import Migrate
 from flask_cors import CORS
-from src.models import db, Users,Dashboard
+from src.models import db, Users,Dashboard,Levels
 from dotenv import load_dotenv
 from sqlalchemy import or_
 from flask_jwt_extended import create_access_token,get_csrf_token,jwt_required,JWTManager,set_access_cookies,unset_jwt_cookies,get_jwt_identity
