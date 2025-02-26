@@ -7,6 +7,7 @@ import Typography from '@mui/material/Typography';
 import Watermelon from '../../assets/icons/watermelon.png'
 import Boton from './Boton';
 import { Button } from '@mui/material';
+import LevelDropdown from './LevelDropDown';
 
 
 export default function Navbar() {
@@ -17,6 +18,8 @@ export default function Navbar() {
         <AppBar position="static" color="primary" sx={{ borderRadius: 1 }}>
           <Toolbar>
             <Box component="img" sx={{ height: 60 }} alt="Your logo." src={Watermelon} />
+            <LevelDropdown levels={[1,2,3,4]}></LevelDropdown>
+
             <Typography color="secondary" variant="h3" component="div" sx={{ flexGrow: 1 }}>
               Harray Up!
             </Typography>

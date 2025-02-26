@@ -1,25 +1,15 @@
 import { useState, useRef, useContext } from 'react'; 
 import { Editor } from '@monaco-editor/react'; 
-import { Button, Box } from '@mui/material'; 
-import { useAppContext } from './AppContext';
+import { Button, Box, Typography } from '@mui/material'; 
+import { useLevelContext } from './Contexts/LevelContext';
 
 function CodeEditor() {
-  const { setFruits } = useAppContext(); // Obtenemos setFruits del contexto
+  const { setFruits, level } = useLevelContext(); // Obtenemos setFruits del contexto
 
-  const initialCode = `
-function changeArray(array) {
-  // a partir de aquí el usuario puede modificar
-  output = []
-  
-  // a partir de aquí no
-  return output
-}
-
-let fruits = ["banana", "banana"]
-changeArray(fruits)
-`;
+  const initialCode = level.staticCode;
 
   const [code, setCode] = useState(initialCode);
+  const [message, setMessage] = useState(''); // Estado para manejar el mensaje
   const editorRef = useRef(null);
 
   const checkCodeModification = (newCode) => {
@@ -34,9 +24,9 @@ changeArray(fruits)
     return false;
   };
 
-  const handleRun = () => {
+  const handleRun = () => { 
     if (checkCodeModification(code)) {
-      alert("No puedes modificar las líneas fuera de la función.");
+      setMessage("No puedes modificar las líneas fuera de la función.");
       return;
     }
 
@@ -49,23 +39,29 @@ changeArray(fruits)
       eval(wrappedCode); // Ejecutamos el código del usuario
       if (Array.isArray(output)) {
         setFruits(output); // Actualizamos el estado global si output es un array
-        alert("Código ejecutado correctamente y fruits actualizado.");
+
+        if (JSON.stringify(output) === JSON.stringify(level.goalArray)) {
+          setMessage("¡Felicidades! Has conseguido el resultado correcto.");
+        } else {
+          setMessage("Sigue intentándolo, el array no coincide.");
+        }
       } else {
-        alert("El código se ejecutó, pero 'output' no es un array.");
+        setMessage("El código se ejecutó, pero 'output' no es un array.");
       }
     } catch (error) {
-      alert(`Error en el código: ${error.message}`);
+      setMessage(`Error en el código: ${error.message}`);
     }
   };
 
   const handleReset = () => {
     setCode(initialCode);
+    setMessage(''); // Limpiamos el mensaje al resetear el código
   };
 
   return (
     <Box sx={{ textAlign: 'center' }}>
       <Editor
-        height="400px"
+        height="300px"
         theme="vs-dark"
         value={code}
         language="javascript"
@@ -83,7 +79,19 @@ changeArray(fruits)
         }}
       />
 
-      <Box sx={{ display: 'flex', justifyContent: 'center', gap: 2, marginTop: 2 }}>
+      {/* Modificación aquí: los botones alineados a la izquierda */}
+      <Box 
+        sx={{ 
+          display: 'flex', 
+          justifyContent: 'flex-start', 
+          gap: 2, 
+          marginTop: 0, 
+          marginLeft: 1, 
+          marginRight: 1, 
+          alignItems: 'center', // Esto centra el contenido en la caja
+          height: '61px' // Para asegurarse de que haya suficiente espacio vertical
+        }}
+      >
         <Button 
           variant="contained" 
           onClick={handleRun}
@@ -106,6 +114,21 @@ changeArray(fruits)
         >
           Reset
         </Button>
+
+        {/* Mostrar el mensaje a la derecha de los botones */}
+        {message && (
+          <Typography 
+            sx={{ 
+              marginLeft: 2, 
+              fontSize: '20px', 
+              color: 'tertiary.main', 
+              display: 'flex', 
+              alignItems: 'center' // Centra verticalmente el mensaje
+            }}
+          >
+            {message}
+          </Typography>
+        )}
       </Box>
     </Box>
   );
