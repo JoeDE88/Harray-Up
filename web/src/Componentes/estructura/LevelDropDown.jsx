@@ -17,12 +17,10 @@ export default function LevelDropdown({ levels }) {
         fetch(`${root}/levels/1`, {
             method: "GET"
         })
-            .then((data) => {
-                return data.json()
-            })
+            .then((data) =>  data.json())
             .then((response) => {
-                setLevel(response.content)
-                console.log(response.content)})
+                console.log(response.content)
+            })
             .catch((error) => console.error("Error fetching level:", error));
     }
 
