@@ -23,6 +23,7 @@ if db_url is not None:
 else:
     app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:////tmp/test.db"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+print(db_url)
 
 jwt_key = os.getenv("JWT_SECRET_KEY")
 
@@ -42,6 +43,24 @@ CORS(app, supports_credentials=True)
 @app.route('/')
 def sitemap():
     return generate_sitemap(app)
+
+@app.route('/levels',methods=['GET'])
+def get_all_levels():
+    levels = Levels.query.all()
+    response_body = {
+        "content" : levels
+    }
+    return jsonify(response_body),200
+
+
+@app.route('/levels/<int:id>',methods=['GET'])
+def get_level(id):
+    level = Levels.query.get(id)
+    response_body = {
+        "content": level
+    }
+    return jsonify(response_body), 200
+
 
 
 @app.route('/register',methods=['POST'])

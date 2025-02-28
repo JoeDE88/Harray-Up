@@ -1,5 +1,5 @@
 
-let root="/api"
+export const root="/api"
 
 export const login = (email,password)=>{
 fetch(`${root}/login`,{

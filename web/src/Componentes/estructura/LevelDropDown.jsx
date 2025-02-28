@@ -4,8 +4,28 @@ import Icon from '@mui/material/Icon';
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { useTheme } from '@mui/material';
+import { useLevelContext } from '../../Contexts/LevelContext';
+import { NavLink as RouterLink } from 'react-router';
+import { root } from '../../calls';
 
-export default function LevelDropdown({ levels, onLevelSelect }) {
+
+export default function LevelDropdown({ levels }) {
+    // EN LUGAR DE PASAR onLevelSelect como prop, intento hacer fetch con esa función
+    const { level, setLevel } = useLevelContext();
+
+    const onLevelSelect = () => {
+        fetch(`${root}/levels/1`, {
+            method: "GET"
+        })
+            .then((data) => {
+                return data.json()
+            })
+            .then((response) => {
+                setLevel(response.content)
+                console.log(response.content)})
+            .catch((error) => console.error("Error fetching level:", error));
+    }
+
     const [anchorEl, setAnchorEl] = React.useState(null);
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -26,30 +46,31 @@ export default function LevelDropdown({ levels, onLevelSelect }) {
 
     return (
         <div>
-            <Button 
-                color="tertiary" 
-                variant='contained' 
-                style={{ fontSize: '20px', marginRight: '30px', marginLeft: '15px', marginTop: '5px', padding:'0px', paddingLeft:'10px' }}
+            <Button
+                color="tertiary"
+                variant='contained'
+                style={{ fontSize: '20px', marginRight: '30px', marginLeft: '15px', marginTop: '5px', padding: '0px', paddingLeft: '10px' }}
                 aria-controls="simple-menu"
                 aria-haspopup="true"
                 onClick={handleClick}
             >
-                Level 1
+                Level {level.id}
                 <Icon style={{ alignContent: 'center', marginLeft: '10px', fontSize: '40px' }} >arrow_drop_down</Icon>
             </Button>
-            <Menu 
-                color="tertiary" 
-                id="simple-menu" 
-                anchorEl={anchorEl} 
-                keepMounted 
-                open={Boolean(anchorEl)} 
+            <Menu
+                color="tertiary"
+                id="simple-menu"
+                anchorEl={anchorEl}
+                keepMounted
+                open={Boolean(anchorEl)}
                 onClose={handleClose}
             >
                 {levels.map((level) => (
-                    <MenuItem 
-                        sx={menuItemStyles} 
-                        variant='contained' 
-                        onClick={() => { onLevelSelect(level); handleClose(); }}
+                    <MenuItem
+                        key={level.id}
+                        sx={menuItemStyles}
+                        variant='contained'
+                        onClick={() => { onLevelSelect(); handleClose(); }}
                     >
                         {level}
                     </MenuItem>
