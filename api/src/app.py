@@ -106,7 +106,7 @@ def handle_login():
     if not is_password_valid:
         return jsonify({"error":"Password not correct"}), 400
 
-    access_token = create_access_token(identity=str(user.ID))
+    access_token = create_access_token(identity=str(user.id))
     response = jsonify({
         "msg": "login successful",
         "user": user
