@@ -1,8 +1,8 @@
 
-export const root = ""
+export const baseURL = "/api"
 
 export const login = (email, password) => {
-  fetch(`${root}/login`, {
+  fetch(`${baseURL}/login`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
@@ -21,7 +21,7 @@ export const login = (email, password) => {
 
 
 export const register = (email, password) => {
-  fetch(`${root}/register`, {
+  fetch(`${baseURL}/register`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({

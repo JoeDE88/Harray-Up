@@ -6,7 +6,7 @@ import MenuItem from "@mui/material/MenuItem";
 import { useTheme } from '@mui/material';
 import { useLevelContext } from '../../Contexts/LevelContext';
 import { NavLink as RouterLink } from 'react-router';
-import { root } from '../../calls';
+import { baseURL } from '../../calls';
 
 
 export default function LevelDropdown({ levels }) {
@@ -14,7 +14,7 @@ export default function LevelDropdown({ levels }) {
     const { level, setLevel } = useLevelContext();
 
     const onLevelSelect = () => {
-        fetch(`${root}/levels/1`, {
+        fetch(`baseURL/levels/1`, {
             method: "GET"
         })
             .then((data) =>  data.json())
