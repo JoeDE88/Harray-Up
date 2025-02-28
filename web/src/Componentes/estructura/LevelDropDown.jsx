@@ -14,7 +14,7 @@ export default function LevelDropdown({ levels }) {
     const { level, setLevel } = useLevelContext();
 
     const onLevelSelect = () => {
-        fetch(`baseURL/levels/1`, {
+        fetch(`${baseURL}/levels/1`, {
             method: "GET"
         })
             .then((data) =>  data.json())
