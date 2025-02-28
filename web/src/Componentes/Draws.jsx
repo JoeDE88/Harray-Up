@@ -1,24 +1,37 @@
 
-import openingBracket from "../assets/icons/opening_bracket.png"
+import openingBracketImg from "../assets/icons/opening_bracket.png"
+import closingBraketImg from "../assets/icons/closing_bracket.png"
+import appleImg from "../assets/icons/apple.png"
+import commaImg from  "../assets/icons/comma.png"
+import bananaImg from "../assets/icons/banana.png"
+import cherryImg from "../assets/icons/cherry.png"
+import grapesImg from "../assets/icons/grapes.png"
+import lemonImg from "../assets/icons/lemon.png"
+import mondarineImg from "../assets/icons/mondarine.png"
+import pearImg from "../assets/icons/pear.png"
+import pineappleImg from "../assets/icons/pineapple.png"
+import strawberryImg from "../assets/icons/strawberry.png"
+import watermelonImg from "../assets/icons/watermelon.png"
+
 import { Box } from "@mui/material"
 
 
 
 
 let imgObject = {
-    opening_bracket: openingBracket,
-    closing_bracket: "src/assets/icons/closing_bracket.png",
-    comma: "src/assets/icons/comma.png",
-    apple: "src/assets/icons/apple.png",
-    banana: "src/assets/icons/banana.png",
-    cherry: "src/assets/icons/cherry.png",
-    grapes: "src/assets/icons/grapes.png",
-    lemon: "src/assets/icons/lemon.png",
-    mondarine: "src/assets/icons/mondarine.png",
-    pear: "src/assets/icons/pear.png",
-    pineapple: "src/assets/icons/pineapple.png",
-    strawberry: "src/assets/icons/strawberry.png",
-    watermelon: "src/assets/icons/watermelon.png"
+    openingBracket: openingBracketImg,
+    closingBracket: closingBraketImg,
+    comma: commaImg,
+    apple: appleImg,
+    banana: bananaImg,
+    cherry: cherryImg,
+    grapes: grapesImg,
+    lemon: lemonImg,
+    mondarine: mondarineImg,
+    pear: pearImg,
+    pineapple: pineappleImg,
+    strawberry: strawberryImg,
+    watermelon: watermelonImg
 }
 
 export const BuildArray = ({array,scale=3}) => {
@@ -27,7 +40,7 @@ export const BuildArray = ({array,scale=3}) => {
     return (
         <Box >
             <Box style={{ display: "flex"}}>
-                <img style={{ width: `${8 * scale}px`, height: `${30 * scale}px`, imageRendering: "pixelated" }} src={imgObject.opening_bracket}></img>
+                <img style={{ width: `${8 * scale}px`, height: `${30 * scale}px`, imageRendering: "pixelated" }} src={imgObject.openingBracket}></img>
                 {array.map((element, index) => {
 
                     //Si hay un array dentro de un array, lo hago recursivo
@@ -53,7 +66,7 @@ export const BuildArray = ({array,scale=3}) => {
                         }
                     }
                 })}
-                <img style={{ width: `${8 * scale}px`, height: `${30 * scale}px`, imageRendering: "pixelated" }} src={imgObject.closing_bracket}></img>
+                <img style={{ width: `${8 * scale}px`, height: `${30 * scale}px`, imageRendering: "pixelated" }} src={imgObject.closingBracket}></img>
             </Box>
         </Box>
     )

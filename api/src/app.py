@@ -25,7 +25,7 @@ else:
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 print(db_url)
 
-jwt_key = os.getenv("JWT_SECRET_KEY") or "akjflsdj"
+jwt_key = os.getenv("JWT_SECRET_KEY")
 
 app.config["JWT_SECRET_KEY"] = "qo138ndqdk2i1"  # Change this!
 app.config["JWT_TOKEN_LOCATION"] = ["cookies"]
