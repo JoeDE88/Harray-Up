@@ -1,5 +1,5 @@
 
-let root="https://cuddly-doodle-jgjjgpj99qp3qw75-5000.app.github.dev/"
+let root="/api"
 
 export const login = (email,password)=>{
 fetch(`${root}/login`,{
