@@ -32,7 +32,7 @@ class Dashboard(db.Model):
 
 @dataclass
 class Levels(db.Model):
-    __tablename__: "levels"
+    __tablename__ = "levels"
     id:int = db.Column(db.Integer,primary_key=True,unique=True)
     introduction:str = db.Column(db.String(500),nullable=False)
     example:str = db.Column(db.String(250),nullable=False,unique=True)

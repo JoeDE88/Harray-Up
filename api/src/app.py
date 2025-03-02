@@ -23,8 +23,9 @@ if db_url is not None:
 else:
     app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:////tmp/test.db"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+print(db_url)
 
-jwt_key = os.getenv("JWT_SECRET_KEY") or "akjflsdj"
+jwt_key = os.getenv("JWT_SECRET_KEY")
 
 app.config["JWT_SECRET_KEY"] = "qo138ndqdk2i1"  # Change this!
 app.config["JWT_TOKEN_LOCATION"] = ["cookies"]
@@ -42,6 +43,24 @@ CORS(app, supports_credentials=True)
 @app.route('/')
 def sitemap():
     return generate_sitemap(app)
+
+@app.route('/levels',methods=['GET'])
+def get_all_levels():
+    levels = Levels.query.all()
+    response_body = {
+        "content" : levels
+    }
+    return jsonify(response_body),200
+
+
+@app.route('/levels/<int:id>',methods=['GET'])
+def get_level(id):
+    level = Levels.query.get(id)
+    response_body = {
+        "content": level
+    }
+    return jsonify(response_body), 200
+
 
 
 @app.route('/register',methods=['POST'])
@@ -87,7 +106,7 @@ def handle_login():
     if not is_password_valid:
         return jsonify({"error":"Password not correct"}), 400
 
-    access_token = create_access_token(identity=str(user.ID))
+    access_token = create_access_token(identity=str(user.id))
     response = jsonify({
         "msg": "login successful",
         "user": user
