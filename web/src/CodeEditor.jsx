@@ -1,4 +1,4 @@
-import { useState, useRef, useContext } from 'react'; 
+import { useState, useRef, useContext,useEffect } from 'react'; 
 import { Editor } from '@monaco-editor/react'; 
 import { Button, Box, Typography } from '@mui/material'; 
 import { useLevelContext } from './Contexts/LevelContext';
@@ -10,46 +10,96 @@ function CodeEditor() {
 
   const [code, setCode] = useState(initialCode);
   const [message, setMessage] = useState(''); // Estado para manejar el mensaje
+  const [startIndex,setStartIndex]=useState(0)
+  const [endIndex,setEndIndex]=useState(0)
+
   const editorRef = useRef(null);
 
-  const checkCodeModification = (newCode) => {
-    const initialLines = initialCode.split('\n');
-    const newLines = newCode.split('\n');
+  function handleEditorWillMount(monaco) {
+    // Configuraciones previas si las necesitas
+    console.log('Antes de montar el editor:', monaco);
+  }
+  function handleEditorDidMount(editor, monaco) {
+    editorRef.current = editor;
+    const model = editor.getModel();
+    console.log(model)
 
-    for (let i = 6; i < initialLines.length; i++) {
-      if (initialLines[i] !== newLines[i]) {
-        return true;
-      }
+  }
+  
+  function extractStaticLines(Lines,start,end){
+    const staticLines = Lines.filter((_, index) => {
+      return index < start || index > end;
+    });
+
+    return staticLines;
+}
+
+
+
+
+  
+  useEffect(() => {
+    
+    const newLines = code.split('\n');
+     const newStartIndex=newLines.findIndex(line => line.includes('// Write your code below this line'));
+     const newEndIndex= newLines.findIndex(line => line.includes('// Write your code above this line'));
+    setStartIndex(newStartIndex)
+    setEndIndex(newEndIndex)
+    
+     console.log(checkCodeModification(newStartIndex,newEndIndex))
+  }, [code]);
+  
+
+  const checkCodeModification = (startIndex, endIndex) => {
+    if (startIndex === -1 || endIndex === -1) {
+      console.warn("No se encontraron los comentarios delimitadores.");
+      return false;
     }
-    return false;
+  
+    const newLines = code.split('\n');
+    const initialLines = initialCode.split('\n');
+  
+    const initialStartIndex = initialLines.findIndex(line => line.includes('// Write your code below this line'));
+    const initialEndIndex = initialLines.findIndex(line => line.includes('// Write your code above this line'));
+  
+    const initialStaticLines = extractStaticLines(initialLines, initialStartIndex, initialEndIndex);
+    const currentStaticLines = extractStaticLines(newLines, startIndex, endIndex);
+  
+    console.log("initialStaticLines:", initialStaticLines);
+    console.log("currentStaticLines:", currentStaticLines);
+  
+    return initialStaticLines.length === currentStaticLines.length && 
+           initialStaticLines.every((val, index) => val === currentStaticLines[index]);
   };
+  
 
-  const handleRun = () => { 
-    if (checkCodeModification(code)) {
-      setMessage("No puedes modificar las líneas fuera de la función.");
+  const handleRun = () => {
+    if (!checkCodeModification(startIndex, endIndex)) {
+      setMessage("You cannot modify lines outside the marks.");
       return;
     }
-
+  
     try {
       let output;
       const wrappedCode = `
         ${code}
         output = changeArray(fruits);
       `;
-      eval(wrappedCode); // Ejecutamos el código del usuario
+      eval(wrappedCode); // Execute user code
+  
       if (Array.isArray(output)) {
-        setFruits(output); // Actualizamos el estado global si output es un array
-
+        setFruits(output); // Update global state if output is an array
+  
         if (JSON.stringify(output) === JSON.stringify(level.goalArray)) {
-          setMessage("¡Felicidades! Has conseguido el resultado correcto.");
+          setMessage("Congratulations! You got the correct result.");
         } else {
-          setMessage("Sigue intentándolo, el array no coincide.");
+          setMessage("Keep trying, the array does not match.");
         }
       } else {
-        setMessage("El código se ejecutó, pero 'output' no es un array.");
+        setMessage("Code executed, but 'output' is not an array.");
       }
     } catch (error) {
-      setMessage(`Error en el código: ${error.message}`);
+      setMessage(`Error in the code: ${error.message}`);
     }
   };
 
@@ -60,24 +110,15 @@ function CodeEditor() {
 
   return (
     <Box sx={{ textAlign: 'center' }}>
-      <Editor
-        height="300px"
-        theme="vs-dark"
-        value={code}
-        language="javascript"
-        options={{
-          readOnly: false,
-          contextmenu: true,
-          scrollBeyondLastLine: false,
-          minimap: { enabled: false },
-          wordWrap: 'on',
-          fontSize: 20,
-        }}
-        onChange={(value) => setCode(value)}
-        editorDidMount={(editor) => {
-          editorRef.current = editor;
-        }}
-      />
+  <Editor
+      height="300px"
+      theme="vs-dark"
+      value={code}
+      language="javascript"
+      beforeMount={handleEditorWillMount}  // Aquí
+      onMount={handleEditorDidMount}      // Aquí
+      onChange={(value) => setCode(value)} // Mantener el estado del código
+    />
 
       {/* Modificación aquí: los botones alineados a la izquierda */}
       <Box 
