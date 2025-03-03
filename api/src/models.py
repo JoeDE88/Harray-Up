@@ -34,10 +34,10 @@ class Dashboard(db.Model):
 class Levels(db.Model):
     __tablename__ = "levels"
     id:int = db.Column(db.Integer,primary_key=True,unique=True)
-    introduction:str = db.Column(db.String(500),nullable=False)
-    example:str = db.Column(db.String(250),nullable=False,unique=True)
-    instructions:str = db.Column(db.String(250),nullable=False)
-    staticCode: str = db.Column(db.String(250),nullable=False)
-    goalArray:str = db.Column(db.String(100),nullable=False)
+    introduction:str = db.Column(db.VARCHAR,nullable=False)
+    example:str = db.Column(db.VARCHAR,nullable=False,unique=True)
+    instructions:str = db.Column(db.VARCHAR,nullable=False)
+    staticCode: str = db.Column(db.VARCHAR,nullable=False)
+    goalArray:str = db.Column(db.VARCHAR,nullable=False)
     def __repr__(self):
         return '<Levels %r>' % self.levels
