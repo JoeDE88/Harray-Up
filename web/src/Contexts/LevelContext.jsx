@@ -24,7 +24,7 @@ return output
 let fruits = ["banana", "banana"]
 changeArray(fruits)
 `,
-    "goalArray": ['strawberry', 'pear', 'pineapple']
+    "goalArray": '["strawberry", "pear", "pineapple"]'
 
 
 

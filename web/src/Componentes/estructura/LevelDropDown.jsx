@@ -20,8 +20,10 @@ export default function LevelDropdown({ levels }) {
             .then((data) =>  data.json())
             .then((response) => {
                 console.log(response.content)
+
+                setLevel(response.content)
             })
-            .catch((error) => console.error("Error fetching level:", error));
+            .catch((error) => console.error('Error fetching level:', error));
     }
 
     const [anchorEl, setAnchorEl] = React.useState(null);
