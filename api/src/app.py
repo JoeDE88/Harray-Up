@@ -48,7 +48,7 @@ def sitemap():
 def get_all_levels():
     levels = Levels.query.all()
     response_body = {
-        "content" : levels
+        'content' : levels
     }
     return jsonify(response_body),200
 
@@ -57,7 +57,7 @@ def get_all_levels():
 def get_level(id):
     level = Levels.query.get(id)
     response_body = {
-        "content": level
+        'content': level
     }
     return jsonify(response_body), 200
 
