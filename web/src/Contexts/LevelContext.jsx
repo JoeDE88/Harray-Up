@@ -14,9 +14,10 @@ export const LevelProvider = ({ children }) => {
     "staticCode":
       `
 function changeArray(array) {
-// a partir de aquí el usuario puede modificaroutput = []
+// Write your code below this line
+output = []
                   
-// a partir de aquí no
+// Write your code above this line
 return output
 }
 
