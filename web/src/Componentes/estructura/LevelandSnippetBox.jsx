@@ -16,7 +16,8 @@ export default function LevelandSnippetBox() {
         // Lógica para manejar la selección de un nivel
         console.log('Nivel seleccionado:', level);
     };
-
+    console.log(level.goalArray);
+    
     return (
         <>
             <Grid container spacing={2}>
@@ -58,7 +59,7 @@ export default function LevelandSnippetBox() {
                                 Expected result
                             </Typography>
 
-                            <BuildArray scale={2} array={level.goalArray} />
+                            <BuildArray scale={2} array={JSON.parse(level.goalArray)} />
                         </Box>
                     </Box>
                 </Grid>
