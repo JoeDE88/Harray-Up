@@ -6,17 +6,14 @@ import MenuItem from "@mui/material/MenuItem";
 import { useTheme } from '@mui/material';
 import { useLevelContext } from '../../Contexts/LevelContext';
 import { getLevel } from '../../calls';
+import { levelList } from '../../levels';
 
 
 export default function LevelDropdown({ levels }) {
     const { level, setLevel } = useLevelContext();
 
-    const onLevelSelect = (levelId) => {
-        getLevel(levelId)
-            .then((response) => {
-                setLevel(response.content)
-            })
-            .catch((error) => console.error('Error fetching level:', error));
+    const onLevelSelect = (level) => {
+      setLevel(level)
     }
 
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -58,12 +55,12 @@ export default function LevelDropdown({ levels }) {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
             >
-                {levels.map((level) => (
+                {levelList.map((level) => (
                     <MenuItem
                         key={level.id}
                         sx={menuItemStyles}
                         variant='contained'
-                        onClick={() => { onLevelSelect(level.id); handleClose(); }}
+                        onClick={() => { onLevelSelect(level); handleClose(); }}
                     >
                         {level.id}
                     </MenuItem>

@@ -12,7 +12,7 @@ const { fruits } = useLevelContext(); // Accedemos a la variable global
         padding: '50px',
         backgroundColor: 'secondary.main',
         marginTop: '20px',
-        height: '150px',
+        height: '90px',
         borderRadius: '10px',
         display: 'flex',
         flexDirection: 'column',
