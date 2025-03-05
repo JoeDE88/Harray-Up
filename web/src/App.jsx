@@ -1,17 +1,27 @@
 import './App.css'
 import React from "react";
 import { Routes,Route} from "react-router"
-import HomePage from './Pages/HomePage';
-import LoginPage from './Pages/LoginPage';
-
+import { LoginRedirect } from './Componentes/routing/LoginRedirect';
+import { GuardedRoutes } from './Componentes/routing/GuardedRoute';
+import { routesConfig } from './routes/routesConfig';
 
 
 function App() {
   return (
     <>
     <Routes>
-      <Route path="/" element={<HomePage/>}/>
-      <Route path="/login" element={<LoginPage/>}/>
+      <Route path="/login" element={<LoginRedirect/>}/>
+      <Route element={<GuardedRoutes/>}>
+        {routesConfig.map((route)=>{
+          return(
+            <Route
+            key={route.name}
+            path={route.path}
+            element={route.component}
+            />
+          )
+        })}
+        </Route>
     </Routes>
     </>
   )

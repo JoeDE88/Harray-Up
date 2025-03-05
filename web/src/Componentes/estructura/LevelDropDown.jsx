@@ -5,22 +5,15 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { useTheme } from '@mui/material';
 import { useLevelContext } from '../../Contexts/LevelContext';
-import { NavLink as RouterLink } from 'react-router';
-import { baseURL } from '../../calls';
+import { getLevel } from '../../calls';
 
 
 export default function LevelDropdown({ levels }) {
-    // EN LUGAR DE PASAR onLevelSelect como prop, intento hacer fetch con esa función
     const { level, setLevel } = useLevelContext();
 
-    const onLevelSelect = () => {
-        fetch(`${baseURL}/levels/1`, {
-            method: "GET"
-        })
-            .then((data) =>  data.json())
+    const onLevelSelect = (levelId) => {
+        getLevel(levelId)
             .then((response) => {
-                console.log(response.content)
-
                 setLevel(response.content)
             })
             .catch((error) => console.error('Error fetching level:', error));
@@ -70,9 +63,9 @@ export default function LevelDropdown({ levels }) {
                         key={level.id}
                         sx={menuItemStyles}
                         variant='contained'
-                        onClick={() => { onLevelSelect(); handleClose(); }}
+                        onClick={() => { onLevelSelect(level.id); handleClose(); }}
                     >
-                        {level}
+                        {level.id}
                     </MenuItem>
                 ))}
             </Menu>
