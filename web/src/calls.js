@@ -1,10 +1,15 @@
 
-export const baseURL = "/api"
+//export const baseURL = "/api"
+export const baseURL = "https://vigilant-zebra-v6qvqrjr9jggcx67x-5000.app.github.dev/"
 
-export const login = (email, password) => {
-  fetch(`${baseURL}/login`, {
+export const postLogin = (email, password) => {
+  return fetch(`${baseURL}/login`, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      "Content-Type": "application/json",
+      "X-CSRF-TOKEN": sessionStorage.getItem("csrf_access_token") || "",
+    },
+    credentials: "include",
     body: JSON.stringify({
       email: email,
       password: password,
@@ -12,16 +17,14 @@ export const login = (email, password) => {
   })
     .then((resp) => { return resp.json() })
     .then((data) => {
-      console.log(data.message)
-
+      sessionStorage.setItem("csrf_access_token", data.csrf_token);
+      return data
     })
     .catch((error) => console.error("Error:", error));
 }
 
-
-
-export const register = (email, password) => {
-  fetch(`${baseURL}/register`, {
+export const postRegister = (email, password) => {
+  return fetch(`${baseURL}/register`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
@@ -31,7 +34,35 @@ export const register = (email, password) => {
   })
     .then((resp) => { return resp.json() })
     .then((data) => {
-      console.log(data.message)
+      return data
     })
     .catch((error) => console.error("Error:", error));
+}
+
+export const postLogout = () => {
+  return fetch(`${baseURL}/logout`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "X-CSRF-TOKEN": sessionStorage.getItem("csrf_access_token") || "",
+    },
+    credentials: "include",
+  }).then((data) => {
+    return data
+  })
+}
+
+
+export const getAllLevels = () => {
+  return fetch(`${baseURL}/levels`)
+    .then((response) => response.json())
+}
+
+export const getLevel = (levelId) => {
+  return fetch(`${baseURL}/levels/${levelId}`, {
+    method: "GET"
+  })
+    .then((resp) => {
+      return resp.json();
+    })
 }

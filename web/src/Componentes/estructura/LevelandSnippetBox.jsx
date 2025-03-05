@@ -10,13 +10,7 @@ import CodeEditor from '../../CodeEditor';
 
 export default function LevelandSnippetBox() {
     const { level } = useLevelContext();
-    let levels = ["Level 2", "Level 3", "Level 4"];
-
-    const handleLevelSelect = (level) => {
-        // Lógica para manejar la selección de un nivel
-        console.log('Nivel seleccionado:', level);
-    };
-    console.log(level.goalArray);
+    
     
     return (
         <>
@@ -24,7 +18,7 @@ export default function LevelandSnippetBox() {
                 <Grid size={6}>
                     <Box
                         sx={{
-                            height: 400,
+                            height: 600,
                             borderRadius: 1,
                             bgcolor: 'secondary.main',
                             marginTop: '10px',
@@ -64,7 +58,7 @@ export default function LevelandSnippetBox() {
                     </Box>
                 </Grid>
                 <Grid size={6}>
-                    <Box sx={{ height: 400, borderRadius: 1, bgcolor: 'secondary.main', marginTop: '10px' }}>
+                    <Box sx={{ height: 600, borderRadius: 1, bgcolor: 'secondary.main', marginTop: '10px' }}>
                         <Typography sx={{ fontSize: '26px', marginLeft: '10px' }}>Prueba tu código aquí.</Typography>
                         <CodeEditor></CodeEditor>
                     </Box>

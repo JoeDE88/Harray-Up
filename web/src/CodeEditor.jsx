@@ -46,7 +46,6 @@ function CodeEditor() {
     setStartIndex(newStartIndex)
     setEndIndex(newEndIndex)
     
-     console.log(checkCodeModification(newStartIndex,newEndIndex))
   }, [code]);
   
 
@@ -65,8 +64,6 @@ function CodeEditor() {
     const initialStaticLines = extractStaticLines(initialLines, initialStartIndex, initialEndIndex);
     const currentStaticLines = extractStaticLines(newLines, startIndex, endIndex);
   
-    console.log("initialStaticLines:", initialStaticLines);
-    console.log("currentStaticLines:", currentStaticLines);
   
     return initialStaticLines.length === currentStaticLines.length && 
            initialStaticLines.every((val, index) => val === currentStaticLines[index]);
@@ -89,7 +86,8 @@ function CodeEditor() {
   
       if (Array.isArray(output)) {
         setFruits(output); // Update global state if output is an array
-  
+        
+      
         if (JSON.stringify(output) === JSON.stringify(level.goalArray)) {
           setMessage("Congratulations! You got the correct result.");
         } else {

@@ -112,7 +112,8 @@ def handle_login():
         "msg": "login successful",
         "user": {
             "id": user.id,
-            "email": user.email
+            "email": user.email,
+            "availableLevels": user.availableLevels
         },
         "csrf_token": csrf_token
         })
@@ -120,6 +121,32 @@ def handle_login():
     set_access_cookies(response,access_token)
     
     return response
+
+@app.route("/<int:id>/userLevel",methods=["PUT"])
+def update_levels(id):
+    data = request.get_json(force=True)
+    updated_levels = data.get("availableLevels")  # El front manda la lista completa
+
+    if not isinstance(updated_levels, list):
+        return jsonify({"error": "availableLevels must be a list"}), 400
+
+    user = Users.query.get(id)
+
+    if not user:
+        return jsonify({"error": "User not found"}), 404
+
+    # Asignar la nueva lista directamente
+    user.availableLevels = updated_levels
+
+    db.session.commit()
+
+    return jsonify({
+        "message": "User levels updated successfully.",
+        "availableLevels": user.availableLevels
+    }), 200
+
+
+
 
 @app.route("/logout", methods=["POST"])
 @jwt_required()

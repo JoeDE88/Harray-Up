@@ -5,7 +5,9 @@ import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import { useState, useCallback } from 'react';
 import { Button, Typography, TextField } from '@mui/material';
-import { login, register } from "../../calls.js";
+import { UserContext } from '../../Contexts/UserContext.jsx';
+import { useContext } from 'react';
+import { useNavigate } from 'react-router';
 
 const CustomTabPanel = React.memo(function CustomTabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -40,6 +42,9 @@ export default function LoginRegisterTabs() {
     const [loginPassword, setLoginPassword] = useState("");
     const [signInEmail, setSignInEmail] = useState("");
     const [signInPassword, setSignInPassword] = useState("");
+
+    const { login,register } = useContext(UserContext)
+    const navigate = useNavigate();
 
     const [value, setValue] = useState(0);
 
@@ -88,7 +93,7 @@ export default function LoginRegisterTabs() {
                         variant="standard" />
                 </Box>
                 <div style={{ display: 'flex', justifyContent: 'center', marginTop: '30px' }}>
-                    <Button onClick={() => { login(loginEmail, loginPassword) }} variant='contained' sx={{ backgroundColor: 'tertiary.main', color: 'tertiary.contrastText', padding: '5px 15px', fontSize: '1.3rem' }}>Login</Button>
+                    <Button onClick={() => { login(loginEmail, loginPassword,navigate) }} variant='contained' sx={{ backgroundColor: 'tertiary.main', color: 'tertiary.contrastText', padding: '5px 15px', fontSize: '1.3rem' }}>Login</Button>
                 </div>
             </CustomTabPanel>
             <CustomTabPanel value={value} index={1}>
@@ -124,7 +129,9 @@ export default function LoginRegisterTabs() {
                         variant="standard" />
                 </Box>
                 <div style={{ display: 'flex', justifyContent: 'center', marginTop: '30px' }}>
-                    <Button onClick={() => { register(signInEmail, signInPassword) }} variant='contained' sx={{ backgroundColor: 'tertiary.main', color: 'tertiary.contrastText', padding: '5px 15px', fontSize: '1.3rem' }}>Sign Up</Button>
+                    <Button onClick={() => {
+                        register(signInEmail, signInPassword);
+                    }} variant='contained' sx={{ backgroundColor: 'tertiary.main', color: 'tertiary.contrastText', padding: '5px 15px', fontSize: '1.3rem' }}>Sign Up</Button>
                 </div>
             </CustomTabPanel>
         </Box>
