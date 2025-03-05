@@ -18,7 +18,7 @@ export default function LevelandSnippetBox() {
                 <Grid size={6}>
                     <Box
                         sx={{
-                            height: 600,
+                            height: 400,
                             borderRadius: 1,
                             bgcolor: 'secondary.main',
                             marginTop: '10px',
@@ -58,7 +58,7 @@ export default function LevelandSnippetBox() {
                     </Box>
                 </Grid>
                 <Grid size={6}>
-                    <Box sx={{ height: 600, borderRadius: 1, bgcolor: 'secondary.main', marginTop: '10px' }}>
+                    <Box sx={{ height: 400, borderRadius: 1, bgcolor: 'secondary.main', marginTop: '10px' }}>
                         <Typography sx={{ fontSize: '26px', marginLeft: '10px' }}>Prueba tu código aquí.</Typography>
                         <CodeEditor></CodeEditor>
                     </Box>
