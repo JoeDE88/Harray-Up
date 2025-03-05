@@ -15,7 +15,7 @@ class Users(db.Model):
     id:int = db.Column(db.Integer, primary_key=True, unique=True)
     email:str = db.Column(db.String(250), nullable=False, unique=True)
     password = db.Column(db.VARCHAR(60), nullable=False)
-    availableUser = db.Column(db.VARCHAR,nullable=False)
+    availableLevels = db.Column(db.VARCHAR,nullable=False)
     def __repr__(self):
         return '<Users %r>' % self.username
 

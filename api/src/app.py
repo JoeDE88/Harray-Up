@@ -78,7 +78,7 @@ def handle_register():
 
     hashedPassword = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
 
-    new_user = Users(email=email, password=hashedPassword)
+    new_user = Users(email=email, password=hashedPassword,availableLevels=[1])
 
     db.session.add(new_user)
     db.session.commit()
