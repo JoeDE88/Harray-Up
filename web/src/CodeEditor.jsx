@@ -17,12 +17,10 @@ function CodeEditor() {
 
   function handleEditorWillMount(monaco) {
     // Configuraciones previas si las necesitas
-    console.log('Antes de montar el editor:', monaco);
   }
   function handleEditorDidMount(editor, monaco) {
     editorRef.current = editor;
     const model = editor.getModel();
-    console.log(model)
 
   }
   
@@ -88,9 +86,7 @@ setCode(level.staticCode)
   
       if (Array.isArray(output)) {
         setFruits(output); // Update global state if output is an array
-        console.log(JSON.stringify(output))
-        console.log((level.goalArray))
-      
+        
         if (JSON.stringify(output) === (level.goalArray)) {
           setMessage("Congratulations! You got the correct result.");
         } else {

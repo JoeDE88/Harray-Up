@@ -29,6 +29,7 @@ export default function LevelDropdown({ levels }) {
         backgroundColor: theme.palette.primary.main,
         color: theme.palette.secondary.main,
         fontSize: '20px',
+        width: '100px',
         "&:hover": {
             backgroundColor: theme.palette.tertiary.main
         }
@@ -62,7 +63,7 @@ export default function LevelDropdown({ levels }) {
                         variant='contained'
                         onClick={() => { onLevelSelect(level); handleClose(); }}
                     >
-                        {level.id}
+                        Level {level.id}
                     </MenuItem>
                 ))}
             </Menu>

@@ -2,6 +2,7 @@ import { createContext, useEffect, useState } from "react";
 import { postLogin, postLogout, postRegister } from "../calls";
 import { baseURL } from "../calls";
 
+
 export const UserContext = createContext({
     user: {},
     login: () => { },
@@ -12,6 +13,7 @@ export const UserContext = createContext({
 export const UserProvider = ({ children }) => {
     const [user, setUser] = useState(null)
     const [csrfToken, setCsrfToken] = useState(null);
+
 
     const fetchUser = async (baseUrl) => {
         try {
@@ -43,6 +45,9 @@ export const UserProvider = ({ children }) => {
             setCsrfToken(data.csrf_token); 
             navigate("/");
         })
+        .catch((error) => {
+            console.error("Error en login:", error);
+        });
     }
 
     const logout = () => {
