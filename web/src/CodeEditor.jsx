@@ -6,9 +6,9 @@ import { useLevelContext } from './Contexts/LevelContext';
 function CodeEditor() {
   const { setFruits, level } = useLevelContext(); // Obtenemos setFruits del contexto
 
-  const initialCode = level.staticCode;
 
-  const [code, setCode] = useState(initialCode);
+
+  const [code, setCode] = useState(level.staticCode);
   const [message, setMessage] = useState(''); // Estado para manejar el mensaje
   const [startIndex,setStartIndex]=useState(0)
   const [endIndex,setEndIndex]=useState(0)
@@ -35,7 +35,9 @@ function CodeEditor() {
 }
 
 
-
+useEffect(()=>{
+setCode(level.staticCode)
+},[level])
 
   
   useEffect(() => {
@@ -56,7 +58,7 @@ function CodeEditor() {
     }
   
     const newLines = code.split('\n');
-    const initialLines = initialCode.split('\n');
+    const initialLines = level.staticCode.split('\n');
   
     const initialStartIndex = initialLines.findIndex(line => line.includes('// Write your code below this line'));
     const initialEndIndex = initialLines.findIndex(line => line.includes('// Write your code above this line'));
@@ -80,15 +82,16 @@ function CodeEditor() {
       let output;
       const wrappedCode = `
         ${code}
-        output = changeArray(fruits);
+        
       `;
       eval(wrappedCode); // Execute user code
   
       if (Array.isArray(output)) {
         setFruits(output); // Update global state if output is an array
-        
+        console.log(JSON.stringify(output))
+        console.log((level.goalArray))
       
-        if (JSON.stringify(output) === JSON.stringify(level.goalArray)) {
+        if (JSON.stringify(output) === (level.goalArray)) {
           setMessage("Congratulations! You got the correct result.");
         } else {
           setMessage("Keep trying, the array does not match.");
