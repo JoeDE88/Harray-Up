@@ -27,12 +27,10 @@ export default function LevelandSnippetBox() {
                     >
 
 
-                        <Box sx={{ padding: '30px' }}>
-                            <Typography sx={{ color: 'primary.main', fontSize: '30px' }}>
+                        <Box sx={{ padding: '30px',color: 'primary.main', fontSize: '30px' }}>
                                 <p>{level.introduction}</p>
                                 <p>{level.example}</p>
                                 <p>{level.instructions}</p>
-                            </Typography>
                         </Box>
 
                         {/* Contenedor posicionado en la esquina inferior derecha de la mitad izquierda */}
