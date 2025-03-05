@@ -10,8 +10,8 @@ import CodeEditor from '../../CodeEditor';
 
 export default function LevelandSnippetBox() {
     const { level } = useLevelContext();
-    
-    
+
+
     return (
         <>
             <Grid container spacing={2}>
@@ -27,12 +27,10 @@ export default function LevelandSnippetBox() {
                     >
 
 
-                        <Box sx={{ padding: '30px' }}>
-                            <Typography sx={{ color: 'primary.main', fontSize: '20px' }}>
-                                <p>{level.introduction}</p>
-                                <p>{level.example}</p>
-                                <p>{level.instructions}</p>
-                            </Typography>
+                        <Box sx={{ padding: '30px', color: 'primary.main', fontSize: '20px' }}>
+                            <p>{level.introduction}</p>
+                            <p>{level.example}</p>
+                            <p>{level.instructions}</p>
                         </Box>
 
                         {/* Contenedor posicionado en la esquina inferior derecha de la mitad izquierda */}

@@ -3,7 +3,7 @@ import { Box, Button } from "@mui/material";
 import { theme } from "../theme/theme.js";
 import LoginRegisterTabs from "../Componentes/estructura/Login-RegisterTabs.jsx";
 import { AppBar } from "@mui/material";
-import Watermelon from '../assets/icons/watermelon.png'
+import Lemon from '../assets/icons/lemon.png'
 import Background from "../assets/background.png"
 import { Typography } from "@mui/material";
 
@@ -68,10 +68,9 @@ export default function LoginPage() {
         <AppBar position="static" color="primary" sx={{ borderRadius: 1, display: "flex", flexDirection: "row", justifyContent: "center" }}>
         {/* <Button component={RouterLink} to="/"> */}
           
-            <Box component="img" sx={{ height: 60, width: 50, imageRendering: "pixelated" }} alt="Your logo." src={Watermelon} />
+            <Box component="img" sx={{ height: 60, width: 50, imageRendering: "pixelated" }} alt="Your logo." src={Lemon} />
           {/* </Button> */}
-            <Box sx={{ width: "30%" }}><Typography sx={{ height: 60, width: "90%" }} color="secondary" variant="h3" > Harray </Typography></Box>
-            <Box sx={{ width: "20%" }}><Typography sx={{ height: 60, width: "10%", pl: 0, pr: 0 }} color="secondary" variant="h3" > Up!</Typography></Box>
+            <Box ><Typography  color="secondary" variant="h3" > Harray Up!</Typography></Box>
         </AppBar>
       </Box>
       <Box
