@@ -10,6 +10,7 @@ from dotenv import load_dotenv
 from sqlalchemy import or_
 from flask_jwt_extended import create_access_token,get_csrf_token,jwt_required,JWTManager,set_access_cookies,unset_jwt_cookies,get_jwt_identity
 from random import randint
+from datetime import timedelta
 
 load_dotenv()
 app = Flask(__name__)
@@ -29,9 +30,12 @@ jwt_key = os.getenv("JWT_SECRET_KEY")
 
 app.config["JWT_SECRET_KEY"] = "qo138ndqdk2i1"  # Change this!
 app.config["JWT_TOKEN_LOCATION"] = ["cookies"]
+app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(hours=24)
 app.config["JWT_COOKIE_CSRF_PROTECT"] = True
 app.config["JWT_CSRF_IN_COOKIES"] = True
 app.config["JWT_COOKIE_SECURE"] = True 
+app.config["JWT_ACCESS_COOKIE_NAME"] = "access_token_cookie"
+app.config["JWT_ACCESS_CSRF_HEADER_NAME"] = "X-CSRF-TOKEN" 
 jwt = JWTManager(app)
 
 MIGRATE = Migrate(app, db)
@@ -121,6 +125,21 @@ def handle_login():
     set_access_cookies(response,access_token)
     
     return response
+
+@app.route('/me', methods=['GET'])
+@jwt_required()  # Solo accesible si hay un JWT válido en las cookies
+def get_current_user():
+    user_id = get_jwt_identity()
+    user = Users.query.get(user_id)
+
+    if not user:
+        return jsonify({"error": "User not found"}), 404
+
+    return jsonify({
+        "id": user.id,
+        "email": user.email,
+        "availableLevels": user.availableLevels
+    })
 
 @app.route("/<int:id>/userLevel",methods=["PUT"])
 def update_levels(id):

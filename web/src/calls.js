@@ -1,6 +1,5 @@
 
-//export const baseURL = "/api"
-export const baseURL = "https://vigilant-zebra-v6qvqrjr9jggcx67x-5000.app.github.dev/"
+export const baseURL = "/api"
 
 export const postLogin = (email, password) => {
   return fetch(`${baseURL}/login`, {
