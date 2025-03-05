@@ -18,7 +18,7 @@ export default function LevelandSnippetBox() {
                 <Grid size={6}>
                     <Box
                         sx={{
-                            height: 400,
+                            height: 500,
                             borderRadius: 1,
                             bgcolor: 'secondary.main',
                             marginTop: '10px',
@@ -28,7 +28,7 @@ export default function LevelandSnippetBox() {
 
 
                         <Box sx={{ padding: '30px' }}>
-                            <Typography sx={{ color: 'primary.main', fontSize: '20px' }}>
+                            <Typography sx={{ color: 'primary.main', fontSize: '30px' }}>
                                 <p>{level.introduction}</p>
                                 <p>{level.example}</p>
                                 <p>{level.instructions}</p>
@@ -49,17 +49,17 @@ export default function LevelandSnippetBox() {
                                 padding: '10px',
                             }}
                         >
-                            <Typography sx={{ color: 'primary.main', fontSize: '20px', marginBottom: '10px' }}>
+                            <Typography sx={{ color: 'primary.main', fontSize: '30px', marginBottom: '10px' }}>
                                 Expected result
                             </Typography>
 
-                            <BuildArray scale={2} array={JSON.parse(level.goalArray)} />
+                            <BuildArray scale={3} array={JSON.parse(level.goalArray)} />
                         </Box>
                     </Box>
                 </Grid>
                 <Grid size={6}>
-                    <Box sx={{ height: 400, borderRadius: 1, bgcolor: 'secondary.main', marginTop: '10px' }}>
-                        <Typography sx={{ fontSize: '26px', marginLeft: '10px' }}>Prueba tu código aquí.</Typography>
+                    <Box sx={{ height: 500, borderRadius: 1, bgcolor: 'secondary.main'}}>
+                        <Typography sx={{ fontSize: '26px', paddingTop: '5px', marginTop: '10px', marginLeft: '10px' }}>Prueba tu código aquí.</Typography>
                         <CodeEditor></CodeEditor>
                     </Box>
                 </Grid>
