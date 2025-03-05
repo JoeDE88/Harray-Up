@@ -12,7 +12,7 @@ const { fruits } = useLevelContext(); // Accedemos a la variable global
         padding: '50px',
         backgroundColor: 'secondary.main',
         marginTop: '20px',
-        height: '90px',
+        height: '190px',
         borderRadius: '10px',
         display: 'flex',
         flexDirection: 'column',
@@ -21,12 +21,12 @@ const { fruits } = useLevelContext(); // Accedemos a la variable global
     }}
 >
     {/* Etiqueta centrada encima de BuildArray */}
-    <Typography sx={{ color: 'primary.main', fontSize: '20px', marginBottom: '10px' }}>
+    <Typography sx={{ color: 'primary.main', fontSize: '40px', marginBottom: '10px' }}>
         Your result
     </Typography>
 
     {/* BuildArray centrado */}
-    <BuildArray array={fruits} />
+    <BuildArray scale={4} array={fruits} />
 </Box>
     )
 }

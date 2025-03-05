@@ -101,16 +101,19 @@ setCode(level.staticCode)
   };
 
   const handleReset = () => {
-    setCode(initialCode);
+    setCode(level.staticCode);
     setMessage(''); // Limpiamos el mensaje al resetear el código
   };
 
   return (
     <Box sx={{ textAlign: 'center' }}>
   <Editor
-      height="300px"
+      height="370px"
       theme="vs-dark"
       value={code}
+      options={{
+        fontSize:"20px"
+    }}
       language="javascript"
       beforeMount={handleEditorWillMount}  // Aquí
       onMount={handleEditorDidMount}      // Aquí
@@ -123,14 +126,15 @@ setCode(level.staticCode)
           display: 'flex', 
           justifyContent: 'flex-start', 
           gap: 2, 
-          marginTop: 0, 
-          marginLeft: 1, 
+          marginTop: 2, 
+          marginLeft: 2, 
           marginRight: 1, 
           alignItems: 'center', // Esto centra el contenido en la caja
-          height: '61px' // Para asegurarse de que haya suficiente espacio vertical
+          height: '55px' // Para asegurarse de que haya suficiente espacio vertical
         }}
       >
         <Button 
+          size="large"
           variant="contained" 
           onClick={handleRun}
           color="tertiary"
@@ -142,6 +146,7 @@ setCode(level.staticCode)
           Run
         </Button>
         <Button 
+          size="large"
           color="tertiary"
           variant="contained" 
           onClick={handleReset}
@@ -158,7 +163,7 @@ setCode(level.staticCode)
           <Typography 
             sx={{ 
               marginLeft: 2, 
-              fontSize: '20px', 
+              fontSize: '25px', 
               color: 'tertiary.main', 
               display: 'flex', 
               alignItems: 'center' // Centra verticalmente el mensaje
