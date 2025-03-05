@@ -1,7 +1,6 @@
 
 export const baseURL = "/api"
 
-
 export const postLogin = (email, password) => {
   return fetch(`${baseURL}/login`, {
     method: "POST",
