@@ -46,7 +46,7 @@ def sitemap():
 
 @app.route('/levels',methods=['GET'])
 def get_all_levels():
-    levels = Levels.query.all()
+    levels = Levels.query.order_by(Levels.id.asc()).all()
     response_body = {
         'content' : levels
     }
@@ -78,7 +78,7 @@ def handle_register():
 
     hashedPassword = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
 
-    new_user = Users(email=email, password=hashedPassword)
+    new_user = Users(email=email, password=hashedPassword,availableLevels=[1])
 
     db.session.add(new_user)
     db.session.commit()
@@ -107,9 +107,14 @@ def handle_login():
         return jsonify({"error":"Password not correct"}), 400
 
     access_token = create_access_token(identity=str(user.id))
+    csrf_token = get_csrf_token(access_token)
     response = jsonify({
         "msg": "login successful",
-        "user": user
+        "user": {
+            "id": user.id,
+            "email": user.email
+        },
+        "csrf_token": csrf_token
         })
     
     set_access_cookies(response,access_token)
