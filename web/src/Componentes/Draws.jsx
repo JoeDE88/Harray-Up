@@ -27,7 +27,7 @@ let imgObject = {
     cherry: cherryImg,
     grapes: grapesImg,
     lemon: lemonImg,
-    mondarine: mondarineImg,
+    tangerine: mondarineImg,
     pear: pearImg,
     pineapple: pineappleImg,
     strawberry: strawberryImg,

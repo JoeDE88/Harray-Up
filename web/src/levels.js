@@ -64,12 +64,11 @@ changeArray(fruits)
 
 }
 
-
 const level3={
     "id": 3,
     "introduction": "The pop() method of Array removes the last element from an array and returns that element. This method changes the length of the array.",
     "example": "array.pop('lemon')",
-    "instructions": "Remove the element mondarine from the array.",
+    "instructions": "Remove the element tangerine from the array.",
     "staticCode":
       `
 function changeArray(array) {
@@ -80,11 +79,55 @@ output = []
 return output
 }
 
-let fruits = ['strawberry','pear','mondarine']
+let fruits = ['strawberry','pear','tangerine']
 changeArray(fruits)
 `,
     "goalArray": '["strawberry","pear"]'
 
 }
 
-  export const levelList=[level1,level2,level3]
+const level4={
+  "id": 4,
+  "introduction": "A way to deal with an array, element by element, it is by trasversing it using a For loop. In the following example you will see how to print every element of an array.",
+  "example": "for (let i = 0; i < array.length; i++) {console.log(arrray[i])}",
+  "instructions": "Use the For loop to transform every element of the array into a 'cherry'.",
+  "staticCode":
+    `
+function changeArray(array) {
+// Write your code below this line
+output = []
+                
+// Write your code above this line
+return output
+}
+
+let fruits = ['strawberry','pear','tangerine','apple','watermelon','lemon']
+changeArray(fruits)
+`,
+  "goalArray": '["cherry","cherry","cherry","cherry","cherry","cherry"]'
+
+}
+
+const level5={
+  "id": 5,
+  "introduction": "Use your knowledge about For loop and conditionals to deal with this last exercise.",
+  "example": "",
+  "instructions": "Use the For loop to transform every 'apple' of the array into a 'pineapple'.",
+  "staticCode":
+    `
+function changeArray(array) {
+// Write your code below this line
+output = []
+                
+// Write your code above this line
+return output
+}
+
+let fruits = ['apple','pear','apple','watermelon','apple','lemon']
+changeArray(fruits)
+`,
+  "goalArray": '["pineapple","pear","pineapple","watermelon","pineapple","lemon"]'
+
+}
+
+  export const levelList=[level1,level2,level3,level4,level5]
