@@ -30,12 +30,12 @@ export default function Navbar() {
       <Box sx={{ width: 1, borderRadius: 1 }}>
         <AppBar position="static" color="primary" sx={{ borderRadius: 1 }}>
           <Toolbar>
+          <LevelDropdown levels={levels} ></LevelDropdown>
             <Box component="img" sx={{ imageRendering:'pixelated', height: 60 }} alt="Your logo." src={Watermelon} />
-            <LevelDropdown levels={levels}></LevelDropdown>
-
             <Typography color="secondary" variant="h3" component="div" sx={{ flexGrow: 1 }}>
               Harray Up!
             </Typography>
+
             {!isEmpty(user) ? (
               <Button
                 color='tertiary'
