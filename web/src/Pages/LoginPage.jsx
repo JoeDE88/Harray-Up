@@ -70,8 +70,7 @@ export default function LoginPage() {
           
             <Box component="img" sx={{ height: 60, width: 50, imageRendering: "pixelated" }} alt="Your logo." src={Lemon} />
           {/* </Button> */}
-            <Box sx={{ width: "30%" }}><Typography sx={{ height: 60, width: "90%" }} color="secondary" variant="h3" > Harray </Typography></Box>
-            <Box sx={{ width: "20%" }}><Typography sx={{ height: 60, width: "10%", pl: 0, pr: 0 }} color="secondary" variant="h3" > Up!</Typography></Box>
+            <Box ><Typography  color="secondary" variant="h3" > Harray Up!</Typography></Box>
         </AppBar>
       </Box>
       <Box
