@@ -5,7 +5,7 @@ export const routesConfig = [
     {
         name:"Root",
         path:"/",
-        component: <Homepage></Homepage>
+        component: <Homepage/>
     },
     {
         name:"Login",

@@ -4,12 +4,15 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import { useState, useCallback } from 'react';
-import { Button, Typography, TextField } from '@mui/material';
+import { Typography, TextField } from '@mui/material';
 import { UserContext } from '../../Contexts/UserContext.jsx';
 import { useContext } from 'react';
 import { useNavigate } from 'react-router';
+import BotonGenerico from './BotonGenerico.jsx';
 
-const CustomTabPanel = React.memo(function CustomTabPanel(props) {
+
+// Funcionalidad de MUI para cambiar tabs
+function CustomTabPanel(props) {
     const { children, value, index, ...other } = props;
     return (
         <div
@@ -19,10 +22,10 @@ const CustomTabPanel = React.memo(function CustomTabPanel(props) {
             aria-labelledby={`simple-tab-${index}`}
             {...other}
         >
-            {value === index && <Box sx={{ p: 6, fontSize: '2rem' }}>{children}</Box>}
+            {value === index && <Box sx={{ p: 5, fontSize: '2rem' }}>{children}</Box>}
         </div>
     );
-});
+}
 
 CustomTabPanel.propTypes = {
     children: PropTypes.node,
@@ -38,19 +41,22 @@ function a11yProps(index) {
 }
 
 export default function LoginRegisterTabs() {
+
+    // estado y funcionalidad de cambio de tabs
+    const [value, setValue] = useState(0);
+    const handleChangeTab = useCallback((event, newValue) => {
+        setValue(newValue);
+    }, []);
+
     const [loginEmail, setLoginEmail] = useState("");
     const [loginPassword, setLoginPassword] = useState("");
     const [signInEmail, setSignInEmail] = useState("");
     const [signInPassword, setSignInPassword] = useState("");
 
-    const { login,register } = useContext(UserContext)
+    const { login, register } = useContext(UserContext)
     const navigate = useNavigate();
 
-    const [value, setValue] = useState(0);
 
-    const handleChangeTab = useCallback((event, newValue) => {
-        setValue(newValue);
-    }, []);
 
     return (
         <Box sx={{ width: '100%', maxWidth: '600px', textAlign: 'center', padding: 6, pb: 0, fontSize: '2rem', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
@@ -92,8 +98,8 @@ export default function LoginRegisterTabs() {
                         onChange={(e) => setLoginPassword(e.target.value)} // Corregido el onChange
                         variant="standard" />
                 </Box>
-                <div style={{ display: 'flex', justifyContent: 'center', marginTop: '30px' }}>
-                    <Button onClick={() => { login(loginEmail, loginPassword,navigate) }} variant='contained' sx={{ backgroundColor: 'tertiary.main', color: 'tertiary.contrastText', padding: '5px 15px', fontSize: '1.3rem' }}>Login</Button>
+                <div style={{ justifyContent: 'center', marginTop: '30px' }}>
+                    <BotonGenerico texto={"Login"} funcion={() => login(loginEmail, loginPassword, navigate)}></BotonGenerico>
                 </div>
             </CustomTabPanel>
             <CustomTabPanel value={value} index={1}>
@@ -129,9 +135,7 @@ export default function LoginRegisterTabs() {
                         variant="standard" />
                 </Box>
                 <div style={{ display: 'flex', justifyContent: 'center', marginTop: '30px' }}>
-                    <Button onClick={() => {
-                        register(signInEmail, signInPassword);
-                    }} variant='contained' sx={{ backgroundColor: 'tertiary.main', color: 'tertiary.contrastText', padding: '5px 15px', fontSize: '1.3rem' }}>Sign Up</Button>
+                    <BotonGenerico texto={"Sign Up"} funcion={()=>register(signInEmail,signInPassword)}></BotonGenerico>
                 </div>
             </CustomTabPanel>
         </Box>

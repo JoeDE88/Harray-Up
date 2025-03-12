@@ -1,7 +1,7 @@
 import { Box } from "@mui/material"
-import LevelandSnippetBox from "../Componentes/estructura/LevelandSnippetBox"
-import Navbar from "../Componentes/estructura/Navbar"
-import OutputArray from "../Componentes/estructura/OutputArray"
+import LevelandSnippetBox from "../Components/estructura/LevelandSnippetBox"
+import Navbar from "../Components/estructura/Navbar"
+import OutputArray from "../Components/estructura/OutputArray"
 import Background from "../assets/background.png"
 
 export default function Homepage() {

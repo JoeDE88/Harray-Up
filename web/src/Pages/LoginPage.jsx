@@ -1,23 +1,14 @@
 import React from "react";
-import { Box, Button } from "@mui/material";
+import { Box } from "@mui/material";
 import { theme } from "../theme/theme.js";
-import LoginRegisterTabs from "../Componentes/estructura/Login-RegisterTabs.jsx";
+import LoginRegisterTabs from "../Components/estructura/Login-RegisterTabs.jsx";
 import { AppBar } from "@mui/material";
 import Lemon from '../assets/icons/lemon.png'
 import Background from "../assets/background.png"
 import { Typography } from "@mui/material";
 
-import { NavLink as RouterLink } from 'react-router';
-
-
-
 export default function LoginPage() {
   return (<>
-
-
-
-
-
 
     <Box
 

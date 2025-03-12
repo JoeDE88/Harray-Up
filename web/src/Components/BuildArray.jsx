@@ -15,9 +15,6 @@ import watermelonImg from "../assets/icons/watermelon.png"
 
 import { Box } from "@mui/material"
 
-
-
-
 let imgObject = {
     openingBracket: openingBracketImg,
     closingBracket: closingBraketImg,
@@ -35,7 +32,6 @@ let imgObject = {
 }
 
 export const BuildArray = ({array,scale=3}) => {
-
 
     return (
         <Box >

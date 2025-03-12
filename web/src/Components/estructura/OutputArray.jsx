@@ -1,8 +1,7 @@
 import { Box } from "@mui/material";
-import { BuildArray } from "../Draws";
+import { BuildArray } from "../BuildArray";
 import { useLevelContext } from "../../Contexts/LevelContext";
 import {Typography} from "@mui/material";
-
 
 export default function OutputArray(){
 const { fruits } = useLevelContext(); // Accedemos a la variable global

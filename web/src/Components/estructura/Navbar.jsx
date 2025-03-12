@@ -7,10 +7,9 @@ import Typography from '@mui/material/Typography';
 import Watermelon from '../../assets/icons/watermelon.png'
 import { Button } from '@mui/material';
 import LevelDropdown from './LevelDropDown';
-import { getAllLevels } from '../../calls';
+import { getAllLevels } from '../../services/api/api';
 import { UserContext } from '../../Contexts/UserContext';
 import { isEmpty } from "lodash";
-
 
 export default function Navbar() {
   const [levels, setLevels] = React.useState([]);

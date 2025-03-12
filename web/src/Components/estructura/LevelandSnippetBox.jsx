@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid2';
 import { useLevelContext } from '../../Contexts/LevelContext';
-import { BuildArray } from '../Draws';
+import { BuildArray } from '../BuildArray';
 import CodeEditor from '../../CodeEditor';
 
 

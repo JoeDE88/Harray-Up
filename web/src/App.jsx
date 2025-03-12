@@ -1,8 +1,8 @@
 import './App.css'
 import React from "react";
 import { Routes,Route} from "react-router"
-import { LoginRedirect } from './Componentes/routing/LoginRedirect';
-import { GuardedRoutes } from './Componentes/routing/GuardedRoute';
+import { LoginRedirect } from './Components/routing/LoginRedirect';
+import { GuardedRoutes } from './Components/routing/GuardedRoute';
 import { routesConfig } from './routes/routesConfig';
 
 

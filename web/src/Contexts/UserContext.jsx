@@ -1,7 +1,6 @@
 import { createContext, useEffect, useState } from "react";
-import { postLogin, postLogout, postRegister } from "../calls";
-import { baseURL } from "../calls";
-
+import { postLogin, postLogout, postRegister } from "../services/api/api";
+import { baseURL } from "../services/api/api";
 
 export const UserContext = createContext({
     user: {},
@@ -13,7 +12,6 @@ export const UserContext = createContext({
 export const UserProvider = ({ children }) => {
     const [user, setUser] = useState(null)
     const [csrfToken, setCsrfToken] = useState(null);
-
 
     const fetchUser = async (baseUrl) => {
         try {
