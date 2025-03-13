@@ -1,8 +1,9 @@
 import { useState, useRef, useContext, useEffect } from 'react';
 import { Editor } from '@monaco-editor/react';
 import { Button, Box, Typography } from '@mui/material';
-import { useLevelContext } from './Contexts/LevelContext';
-import { levelList } from './levels';
+import { useLevelContext } from '../Contexts/LevelContext';
+import { levelList } from '../levels';
+import BotonGenerico from './BotonGenerico';
 
 function CodeEditor() {
   const { setFruits, setLevel, level } = useLevelContext(); // Obtenemos setFruits del contexto
@@ -144,43 +145,10 @@ function CodeEditor() {
           height: '55px' // Para asegurarse de que haya suficiente espacio vertical
         }}
       >
-        <Button
-          size="large"
-          variant="contained"
-          onClick={handleRun}
-          color="tertiary"
-          sx={{
-            fontSize: '16px',
-            '&:hover': { backgroundColor: '#303f9f' },
-          }}
-        >
-          Run
-        </Button>
-        <Button
-          size="large"
-          color="tertiary"
-          variant="contained"
-          onClick={handleReset}
-          sx={{
-            fontSize: '16px',
-            '&:hover': { backgroundColor: '#d32f2f' },
-          }}
-        >
-          Reset
-        </Button>
+        <BotonGenerico texto={"Run"} funcion={handleRun} sx={{'&:hover': { backgroundColor: '#303f9f' }}}/>
+        <BotonGenerico texto={"Reset"} funcion={handleReset} sx={{'&:hover': { backgroundColor: '#d32f2f' }}}/>
         { buttonIsVisible &&
-          <Button
-            size="large"
-            color="tertiary"
-            variant="contained"
-            onClick={nextLevel}
-            sx={{
-              fontSize: '16px',
-              '&:hover': { backgroundColor: '#d32f2f' },
-            }}
-          >
-            Next Level
-          </Button>
+          <BotonGenerico texto={"Next"} funcion={nextLevel} sx={{'&:hover': { backgroundColor: '#303f9f' }}}/>
         }
 
 

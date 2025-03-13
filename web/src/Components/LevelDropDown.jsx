@@ -2,8 +2,8 @@ import * as React from 'react';
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { useTheme } from '@mui/material';
-import { useLevelContext } from '../../Contexts/LevelContext';
-import { levelList } from '../../levels';
+import { useLevelContext } from '../Contexts/LevelContext';
+import { levelList } from '../levels';
 import { BotonDropDown } from './BotonDropdown';
 import Box from '@mui/material/Box';
 

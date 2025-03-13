@@ -8,7 +8,7 @@ import { Typography, TextField } from '@mui/material';
 import { UserContext } from '../../Contexts/UserContext.jsx';
 import { useContext } from 'react';
 import { useNavigate } from 'react-router';
-import BotonGenerico from './BotonGenerico.jsx';
+import BotonGenerico from '../BotonGenerico.jsx';
 
 
 // Funcionalidad de MUI para cambiar tabs

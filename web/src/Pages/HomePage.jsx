@@ -1,13 +1,12 @@
 import { Box } from "@mui/material"
-import LevelandSnippetBox from "../Components/estructura/LevelandSnippetBox"
 import Navbar from "../Components/estructura/Navbar"
-import OutputArray from "../Components/estructura/OutputArray"
+import OutputArray from "../Components/OutputArray"
 import Background from "../assets/background.png"
+import LevelAndEditor from "../Components/estructura/LevelAndEditor"
 
 export default function Homepage() {
     return (
         <Box
-
             sx={{
                 "&::before": {
                     content: '""',
@@ -27,7 +26,7 @@ export default function Homepage() {
                 }
             }}>
             <Navbar></Navbar>
-            <LevelandSnippetBox></LevelandSnippetBox>
+            <LevelAndEditor></LevelAndEditor>
             <OutputArray></OutputArray>
         </Box>
     )
