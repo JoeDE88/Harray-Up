@@ -5,12 +5,10 @@ import Grid from '@mui/material/Grid2';
 import { useLevelContext } from '../../Contexts/LevelContext';
 import { BuildArray } from '../BuildArray';
 import CodeEditor from '../../CodeEditor';
-
-
+import LevelDropdown from './LevelDropDown';
 
 export default function LevelandSnippetBox() {
     const { level } = useLevelContext();
-
 
     return (
         <>
@@ -25,12 +23,12 @@ export default function LevelandSnippetBox() {
                             position: 'relative', // Añadido para poder posicionar la caja de abajo
                         }}
                     >
+                        <LevelDropdown levels={level} ></LevelDropdown>
 
-
-                        <Box sx={{ padding: '30px',color: 'primary.main', fontSize: '30px' }}>
-                                <p>{level.introduction}</p>
-                                <p>{level.example}</p>
-                                <p>{level.instructions}</p>
+                        <Box sx={{ padding: 2, color: 'primary.main', fontSize: '30px' }}>
+                            <p>{level.introduction}</p>
+                            <p>{level.example}</p>
+                            <p>{level.instructions}</p>
                         </Box>
 
                         {/* Contenedor posicionado en la esquina inferior derecha de la mitad izquierda */}
@@ -56,7 +54,7 @@ export default function LevelandSnippetBox() {
                     </Box>
                 </Grid>
                 <Grid size={6}>
-                    <Box sx={{ height: 500, borderRadius: 1, bgcolor: 'secondary.main'}}>
+                    <Box sx={{ height: 500, borderRadius: 1, bgcolor: 'secondary.main' }}>
                         <Typography sx={{ fontSize: '26px', paddingTop: '5px', marginTop: '10px', marginLeft: '10px' }}>Prueba tu código aquí.</Typography>
                         <CodeEditor></CodeEditor>
                     </Box>
