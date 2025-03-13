@@ -6,13 +6,12 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Watermelon from '../../assets/icons/watermelon.png'
 import { Button } from '@mui/material';
-import LevelDropdown from './LevelDropDown';
 import { getAllLevels } from '../../services/api/api';
 import { UserContext } from '../../Contexts/UserContext';
 import { isEmpty } from "lodash";
+import BotonGenerico from './BotonGenerico.jsx';
 
 export default function Navbar() {
-  const [levels, setLevels] = React.useState([]);
   const { user, logout } = React.useContext(UserContext)
 
   // Obtener niveles desde el backend al montar el componente
@@ -29,20 +28,12 @@ export default function Navbar() {
       <Box sx={{ width: 1, borderRadius: 1 }}>
         <AppBar position="static" color="primary" sx={{ borderRadius: 1 }}>
           <Toolbar>
-          <LevelDropdown levels={levels} ></LevelDropdown>
             <Box component="img" sx={{ imageRendering:'pixelated', height: 60 }} alt="Your logo." src={Watermelon} />
             <Typography color="secondary" variant="h3" component="div" sx={{ flexGrow: 1 }}>
               Harray Up!
             </Typography>
-
             {!isEmpty(user) ? (
-              <Button
-                color='tertiary'
-                variant='contained'
-                style={{ fontSize: '20px', marginRight: '30px' }}
-                onClick={() => logout()}>
-                Logout
-              </Button>
+            <BotonGenerico texto={"Logout"} funcion={()=> logout()} />              
             ) : (<Button
               component={RouterLink}
               to="/login"
@@ -53,7 +44,6 @@ export default function Navbar() {
           </Toolbar>
         </AppBar>
       </Box>
-
     </>
   );
 }
