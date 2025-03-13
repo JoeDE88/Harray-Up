@@ -1,6 +1,6 @@
 import { Box } from "@mui/material";
-import { BuildArray } from "../BuildArray";
-import { useLevelContext } from "../../Contexts/LevelContext";
+import { BuildArray } from "./BuildArray";
+import { useLevelContext } from "../Contexts/LevelContext";
 import {Typography} from "@mui/material";
 
 export default function OutputArray(){

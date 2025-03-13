@@ -9,7 +9,7 @@ import { Button } from '@mui/material';
 import { getAllLevels } from '../../services/api/api';
 import { UserContext } from '../../Contexts/UserContext';
 import { isEmpty } from "lodash";
-import BotonGenerico from './BotonGenerico.jsx';
+import BotonGenerico from '../BotonGenerico.jsx';
 
 export default function Navbar() {
   const { user, logout } = React.useContext(UserContext)

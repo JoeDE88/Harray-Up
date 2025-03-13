@@ -2,7 +2,7 @@
 import openingBracketImg from "../assets/icons/opening_bracket.png"
 import closingBraketImg from "../assets/icons/closing_bracket.png"
 import appleImg from "../assets/icons/apple.png"
-import commaImg from  "../assets/icons/comma.png"
+import commaImg from "../assets/icons/comma.png"
 import bananaImg from "../assets/icons/banana.png"
 import cherryImg from "../assets/icons/cherry.png"
 import grapesImg from "../assets/icons/grapes.png"
@@ -31,11 +31,11 @@ let imgObject = {
     watermelon: watermelonImg
 }
 
-export const BuildArray = ({array,scale=3}) => {
+export const BuildArray = ({ array, scale = 3 }) => {
 
     return (
         <Box >
-            <Box style={{ display: "flex"}}>
+            <Box style={{ display: "flex" }}>
                 <img style={{ width: `${8 * scale}px`, height: `${30 * scale}px`, imageRendering: "pixelated" }} src={imgObject.openingBracket}></img>
                 {array.map((element, index) => {
 
@@ -45,7 +45,7 @@ export const BuildArray = ({array,scale=3}) => {
                         if (index !== array.length - 1) {
                             return <>
                                 <BuildArray array={element}></BuildArray>
-                                <img style={{ width: `${6 * scale}px`, height: `${30 * scale}px`, imageRendering: "pixelated" }} src={imgObject["comma"]}></img>
+                                <img style={{ width: `${8 * scale}px`, height: `${30 * scale}px`, imageRendering: "pixelated" }} src={imgObject["comma"]}></img>
                             </>
                         } else {
 
