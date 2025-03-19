@@ -1,4 +1,4 @@
-import { Box, Grid2, Paper, Typography } from "@mui/material";
+import { Box, Paper, Typography } from "@mui/material";
 import { useLevelContext } from "../Contexts/LevelContext";
 import LevelDropdown from "./LevelDropDown";
 import { BuildArray } from './BuildArray';
@@ -7,11 +7,10 @@ export default function LevelBox() {
     const { level } = useLevelContext();
 
     return (
-        <Paper elevation={3} sx={{ width: "100%" }}>
-            <Grid2 container spacing={2}>
+        <Paper elevation={3} sx={{ width: "100%",height:'100%' }}>
                 <Box
                     sx={{
-                        height: '500px',
+                        height:'100%',
                         borderRadius: 1,
                         bgcolor: 'secondary.main',
                         position: 'relative', // Añadido para poder posicionar la caja de abajo
@@ -23,7 +22,7 @@ export default function LevelBox() {
                         <p>{level.example}</p>
                         <p>{level.instructions}</p>
                     </Box>
-                    <Box container
+                    <Box container='true'
                         sx={{
                             position: 'absolute',
                             bottom: '10px',
@@ -43,8 +42,6 @@ export default function LevelBox() {
                         <BuildArray scale={3} array={JSON.parse(level.goalArray)} />
                     </Box>
                 </Box>
-            </Grid2>
-
         </Paper>
     )
 }
