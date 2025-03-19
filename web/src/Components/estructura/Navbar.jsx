@@ -15,13 +15,13 @@ export default function Navbar() {
   const { user, logout } = React.useContext(UserContext)
 
   // Obtener niveles desde el backend al montar el componente
-  React.useEffect(() => {
+  /* React.useEffect(() => {
     getAllLevels()
       .then((data) => {
         setLevels(data.content);
       })
       .catch((error) => console.error("Error fetching levels:", error));
-  }, []);
+  }, []); */
 
   return (
     <>

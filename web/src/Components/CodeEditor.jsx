@@ -1,6 +1,6 @@
 import { useState, useRef, useContext, useEffect } from 'react';
 import { Editor } from '@monaco-editor/react';
-import { Button, Box, Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import { useLevelContext } from '../Contexts/LevelContext';
 import { levelList } from '../levels';
 import BotonGenerico from './BotonGenerico';
@@ -119,9 +119,10 @@ function CodeEditor() {
 
   return (
     <Box>
-      <Box sx={{ textAlign: 'center' }}>
+      <Box sx={{ height: '500px' }}>
+        <Typography sx={{ fontSize: '26px', paddingTop: '4px', marginLeft: '10px' }}>Prueba tu código aquí.</Typography>
         <Editor
-          height="370px"
+          height="80%"
           theme="vs-dark"
           value={code}
           options={{
@@ -132,23 +133,14 @@ function CodeEditor() {
           onMount={handleEditorDidMount}      // Aquí
           onChange={(value) => setCode(value)} // Mantener el estado del código
         />
-      </Box>
-      <Box sx={{display:'flex',alignItems:'center',
-            backgroundColor:'grey'}}>
-        <Box
-          sx={{
-            justifyContent: 'space-around',// Esto centra el contenido en la caja
-            width:'50%'
-          }}
-        >
-          <BotonGenerico texto={"Reset"} funcion={handleReset} sx={{ '&:hover': { backgroundColor: '#d32f2f' } }} />
-          <BotonGenerico texto={"Run"} funcion={handleRun} sx={{ '&:hover': { backgroundColor: '#303f9f' } }} />
-          {buttonIsVisible &&
-            <BotonGenerico texto={"Next"} funcion={nextLevel} sx={{ '&:hover': { backgroundColor: '#303f9f' } }} />
-          }
-        </Box>
-        <Box>
-
+        <Box sx={{display: 'flex',alignItems: 'center', height: '21.5%'}}>
+          <Box sx={{display:'flex',  justifyContent: 'space-evenly',  width: '50%' }}>
+            <BotonGenerico texto={"Reset"} funcion={handleReset} sx={{ '&:hover': { backgroundColor: '#d32f2f' } }} />
+            <BotonGenerico texto={"Run"} funcion={handleRun} sx={{ '&:hover': { backgroundColor: '#303f9f' } }} />
+            {buttonIsVisible &&
+              <BotonGenerico texto={"Next"} funcion={nextLevel} sx={{ '&:hover': { backgroundColor: '#303f9f' } }} />
+            }
+          </Box>
           {/* Mostrar el mensaje a la derecha de los botones */}
           {message && (
             <Typography
