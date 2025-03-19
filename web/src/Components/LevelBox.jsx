@@ -11,7 +11,7 @@ export default function LevelBox() {
             <Grid2 container spacing={2}>
                 <Box
                     sx={{
-                        height: 500,
+                        height: '500px',
                         borderRadius: 1,
                         bgcolor: 'secondary.main',
                         position: 'relative', // Añadido para poder posicionar la caja de abajo

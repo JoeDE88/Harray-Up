@@ -37,9 +37,9 @@ function CodeEditor() {
 
   useEffect(() => {
     setCode(level.staticCode)
-    if (level == levelList[4]){
+    if (level == levelList[4]) {
       setButtonIsVisible(false)
-    }else{setButtonIsVisible(true)}
+    } else { setButtonIsVisible(true) }
   }, [level])
 
 
@@ -91,7 +91,7 @@ function CodeEditor() {
 
       if (Array.isArray(output)) {
         setFruits(output); // Update global state if output is an array
-      
+
         if (JSON.stringify(output) === (level.goalArray)) {
           setMessage("Congratulations! You got the correct result.");
         } else {
@@ -118,54 +118,52 @@ function CodeEditor() {
   };
 
   return (
-    <Box sx={{ textAlign: 'center' }}>
-      <Editor
-        height="370px"
-        theme="vs-dark"
-        value={code}
-        options={{
-          fontSize: "20px"
-        }}
-        language="javascript"
-        beforeMount={handleEditorWillMount}  // Aquí
-        onMount={handleEditorDidMount}      // Aquí
-        onChange={(value) => setCode(value)} // Mantener el estado del código
-      />
+    <Box>
+      <Box sx={{ textAlign: 'center' }}>
+        <Editor
+          height="370px"
+          theme="vs-dark"
+          value={code}
+          options={{
+            fontSize: "20px"
+          }}
+          language="javascript"
+          beforeMount={handleEditorWillMount}  // Aquí
+          onMount={handleEditorDidMount}      // Aquí
+          onChange={(value) => setCode(value)} // Mantener el estado del código
+        />
+      </Box>
+      <Box sx={{display:'flex',alignItems:'center',
+            backgroundColor:'grey'}}>
+        <Box
+          sx={{
+            justifyContent: 'space-around',// Esto centra el contenido en la caja
+            width:'50%'
+          }}
+        >
+          <BotonGenerico texto={"Reset"} funcion={handleReset} sx={{ '&:hover': { backgroundColor: '#d32f2f' } }} />
+          <BotonGenerico texto={"Run"} funcion={handleRun} sx={{ '&:hover': { backgroundColor: '#303f9f' } }} />
+          {buttonIsVisible &&
+            <BotonGenerico texto={"Next"} funcion={nextLevel} sx={{ '&:hover': { backgroundColor: '#303f9f' } }} />
+          }
+        </Box>
+        <Box>
 
-      {/* Modificación aquí: los botones alineados a la izquierda */}
-      <Box
-        sx={{
-          display: 'flex',
-          justifyContent: 'flex-start',
-          gap: 2,
-          marginTop: 2,
-          marginLeft: 2,
-          marginRight: 1,
-          alignItems: 'center', // Esto centra el contenido en la caja
-          height: '55px' // Para asegurarse de que haya suficiente espacio vertical
-        }}
-      >
-        <BotonGenerico texto={"Run"} funcion={handleRun} sx={{'&:hover': { backgroundColor: '#303f9f' }}}/>
-        <BotonGenerico texto={"Reset"} funcion={handleReset} sx={{'&:hover': { backgroundColor: '#d32f2f' }}}/>
-        { buttonIsVisible &&
-          <BotonGenerico texto={"Next"} funcion={nextLevel} sx={{'&:hover': { backgroundColor: '#303f9f' }}}/>
-        }
-
-
-        {/* Mostrar el mensaje a la derecha de los botones */}
-        {message && (
-          <Typography
-            sx={{
-              marginLeft: 2,
-              fontSize: '25px',
-              color: 'tertiary.main',
-              display: 'flex',
-              alignItems: 'center' // Centra verticalmente el mensaje
-            }}
-          >
-            {message}
-          </Typography>
-        )}
+          {/* Mostrar el mensaje a la derecha de los botones */}
+          {message && (
+            <Typography
+              sx={{
+                marginLeft: 2,
+                fontSize: '25px',
+                color: 'tertiary.main',
+                display: 'flex',
+                alignItems: 'center' // Centra verticalmente el mensaje
+              }}
+            >
+              {message}
+            </Typography>
+          )}
+        </Box>
       </Box>
     </Box>
   );
