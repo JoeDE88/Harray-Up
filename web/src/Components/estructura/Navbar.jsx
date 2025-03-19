@@ -33,7 +33,7 @@ export default function Navbar() {
               Harray Up!
             </Typography>
             {!isEmpty(user) ? (
-            <BotonGenerico texto={"Logout"} funcion={()=> logout()} />              
+            <BotonGenerico texto={"Logout"} handleClick={()=> logout()} />              
             ) : (<Button
               component={RouterLink}
               to="/login"

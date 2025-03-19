@@ -76,7 +76,8 @@ export default function LoginRegisterTabs() {
                         label="Email"
                         required
                         value={loginEmail} // Valor controlado
-                        onChange={(e) => setLoginEmail(e.target.value)} // Cambio controlado
+                        onChange={(e) => setLoginEmail(e.target.value)}
+                        onKeyDown={(e)=> {if (e.keyCode === 13) login(loginEmail, loginPassword, navigate)}}
                         sx={{
                             color: 'tertiary.contrastText',
                             '& .MuiInputLabel-root': {
@@ -96,10 +97,11 @@ export default function LoginRegisterTabs() {
                         type="password"
                         value={loginPassword}
                         onChange={(e) => setLoginPassword(e.target.value)} // Corregido el onChange
+                        onKeyDown={(e)=> {if (e.keyCode === 13) login(loginEmail, loginPassword, navigate)}}
                         variant="standard" />
                 </Box>
                 <div style={{ justifyContent: 'center', marginTop: '30px' }}>
-                    <BotonGenerico texto={"Login"} funcion={() => login(loginEmail, loginPassword, navigate)}></BotonGenerico>
+                    <BotonGenerico texto={"Login"} handleClick={() => login(loginEmail, loginPassword, navigate)}></BotonGenerico>
                 </div>
             </CustomTabPanel>
             <CustomTabPanel value={value} index={1}>
