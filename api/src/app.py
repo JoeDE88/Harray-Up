@@ -72,6 +72,9 @@ def handle_register():
     data = request.get_json(force=True)
     email = data.get("email")
     password = data.get("password")
+    if email == "" or password == "":
+        return jsonify({"error" : "can't be blank"}), 400
+
     required_fields = ["email","password"]
     if not all(field in data for field in required_fields):
         return jsonify({"error": "Missing required fields"}), 400
@@ -173,7 +176,21 @@ def logout_with_cookies():
     response = jsonify({"msg": "logout successful"})
     unset_jwt_cookies(response)
     return response
-        
+
+@app.route("/users",methods=["GET"])
+def handle_users():
+    users = Users.query.all()
+    return jsonify(users)
+
+@app.route("/users/<int:id>",methods=["DELETE"])
+def delete_user(id):
+    user = Users.query.get(id)
+
+    db.session.delete(user)
+    db.session.commit()
+
+    return jsonify({"message": "User deleted successfully"}),200
+
 @app.route("/health", methods=["GET"])
 def health_check():
     return jsonify({"status": "ok", "uptime": round(time.time() - start_time, 2)}), 200
