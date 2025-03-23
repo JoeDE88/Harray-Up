@@ -71,39 +71,39 @@ def get_level(id):
 def handle_register():
     data = request.get_json(force=True)
     email = data.get("email")
+    username = data.get("username")
     password = data.get("password")
-    if email == "" or password == "":
+    if email == "" or username == "" or password == "":
         return jsonify({"error" : "can't be blank"}), 400
 
-    required_fields = ["email","password"]
+    required_fields = ["email","username","password"]
     if not all(field in data for field in required_fields):
         return jsonify({"error": "Missing required fields"}), 400
 
-    existing_user = db.session.query(Users).filter(Users.email == email).first()
+    existing_user = db.session.query(Users).filter(or_(Users.email == email,Users.username == username)).first()
     if existing_user:
-        return jsonify({"error": "User already registered"}), 400
+        return jsonify({"error": "Email or User already registered"}), 400
 
     hashedPassword = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
 
-    new_user = Users(email=email, password=hashedPassword,availableLevels=[1])
+    new_user = Users(email=email,username=username,password=hashedPassword)
 
     db.session.add(new_user)
     db.session.commit()
     return jsonify({"message":"User created successfully."}),200
 
-
 @app.route('/login',methods=['POST'])
 def handle_login():
     data = request.get_json(force=True)
-    email = data["email"]
+    username = data["username"]
     password = data["password"]
 
-    required_fields= ["email","password"]
+    required_fields= ["username","password"]
 
     if not all(field in data for field in required_fields):
-        return jsonify({"error": "Missing required fields", "missing": missing_fields}), 400
+        return jsonify({"error": "Missing required fields"}), 400
     
-    user = Users.query.filter_by(email=email).first()
+    user = Users.query.filter_by(username=username).first()
 
     if not user:
         return jsonify({"error":"User not found"}), 400
@@ -119,8 +119,7 @@ def handle_login():
         "msg": "login successful",
         "user": {
             "id": user.id,
-            "email": user.email,
-            "availableLevels": user.availableLevels
+            "username": user.username
         },
         "csrf_token": csrf_token
         })
@@ -140,7 +139,7 @@ def get_current_user():
 
     return jsonify({
         "id": user.id,
-        "email": user.email,
+        "username": user.username,
         "availableLevels": user.availableLevels
     })
 

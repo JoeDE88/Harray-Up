@@ -39,8 +39,8 @@ export const UserProvider = ({ children }) => {
         fetchUser(baseURL);
     }, [baseURL]);
 
-    const login = (email, password, navigate) => {
-        postLogin(email, password).then((data) => {
+    const login = (username, password, navigate) => {
+        postLogin(username, password).then((data) => {
             setUser(data.user);
             setCsrfToken(data.csrf_token); 
             navigate("/");
@@ -57,9 +57,9 @@ export const UserProvider = ({ children }) => {
         });
     }
 
-    const register = (email, password) => {
-        postRegister(email, password).then(() => {
-            login(email, password);
+    const register = (email,username, password) => {
+        postRegister(email,username, password).then(() => {
+            login(username, password);
         });
     };
 

@@ -14,8 +14,8 @@ class Users(db.Model):
     # Notice that each column is also a normal Python instance attribute.
     id:int = db.Column(db.Integer, primary_key=True, unique=True)
     email:str = db.Column(db.String(250), nullable=False, unique=True)
+    username:str = db.Column(db.String(250),nullable=False,unique=True)
     password = db.Column(db.VARCHAR(60), nullable=False)
-    availableLevels = db.Column(db.JSON, nullable=False, default=[])
     def __repr__(self):
         return '<Users %r>' % self.username
 

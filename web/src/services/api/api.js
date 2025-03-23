@@ -1,6 +1,6 @@
 export const baseURL = "/api"
 
-export const postLogin = (email, password) => {
+export const postLogin = (username, password) => {
   return fetch(`${baseURL}/login`, {
     method: "POST",
     headers: {
@@ -9,7 +9,7 @@ export const postLogin = (email, password) => {
     },
     credentials: "include",
     body: JSON.stringify({
-      email: email,
+      username: username,
       password: password,
     }),
   })
@@ -21,12 +21,13 @@ export const postLogin = (email, password) => {
     .catch((error) => console.error("Error:", error));
 }
 
-export const postRegister = (email, password) => {
+export const postRegister = (email, username, password) => {
   return fetch(`${baseURL}/register`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       email: email,
+      username: username,
       password: password,
     }),
   })
