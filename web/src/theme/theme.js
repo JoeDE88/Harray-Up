@@ -12,7 +12,10 @@ export const theme = createTheme({
         tertiary: {
             main: "#79444A",
             contrastText: "#D2C9A5"
-        }
+        },
+        error: {
+            main: "#79444A", // change the error color to pink
+          }
     },
     typography: {
         fontFamily: [

@@ -4,12 +4,12 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import { useState, useCallback } from 'react';
-import { Typography, TextField } from '@mui/material';
+import { Typography, TextField, FormHelperText } from '@mui/material';
 import { UserContext } from '../../Contexts/UserContext.jsx';
 import { useContext } from 'react';
 import { useNavigate } from 'react-router';
 import BotonGenerico from '../BotonGenerico.jsx';
-import { handleEmailChange, handlePasswordChange, validateEmail, validatePassword } from '../../utils/validations.js';
+import { handleEmailChange, handlePasswordChange, handleUsernameChange } from '../../utils/validations.js';
 
 // Funcionalidad de MUI para cambiar tabs
 function CustomTabPanel(props) {
@@ -49,22 +49,25 @@ export default function LoginRegisterTabs() {
     }, []);
 
     // valores iniciales de email y password
-    const [loginEmail, setLoginEmail] = useState("");
+    const [loginUsername, setLoginUsername] = useState("");
     const [loginPassword, setLoginPassword] = useState("");
     const [signInEmail, setSignInEmail] = useState("");
+    const [signInUsername, setSignInUsername] = useState("");
     const [signInPassword, setSignInPassword] = useState("");
 
     // validación de email y password al registrarse
     const [isEmailInvalid, setisEmailInvalid] = useState(false);
+    const [isUsernameInvalid, setisUsernameInvalid] = useState(false);
     const [isPasswordInvalid, setisPasswordInvalid] = useState(false);
 
     const handleEmail = handleEmailChange(setSignInEmail, setisEmailInvalid);
+    const handleUsername = handleUsernameChange(setSignInUsername, setisUsernameInvalid);
     const handlePassword = handlePasswordChange(setSignInPassword, setisPasswordInvalid);
 
     const handleRegister = (e) => {
         if (e.keyCode === 13) {
-            if (!isPasswordInvalid && !isEmailInvalid) {
-                register(signInEmail, signInPassword)
+            if (!isPasswordInvalid && !isEmailInvalid && !isUsernameInvalid) {
+                register(signInEmail, signInUsername, signInPassword)
             }
         }
     }
@@ -87,12 +90,12 @@ export default function LoginRegisterTabs() {
                 </Typography>
                 <Box sx={{ display: "flex", flexDirection: "column" }}>
                     <TextField
-                        id="standard-email-input"
-                        label="Email"
+                        id="standard-username-input"
+                        label="Username"
                         required
-                        value={loginEmail} // Valor controlado
-                        onChange={(e) => setLoginEmail(e.target.value)}
-                        onKeyDown={(e) => { if (e.keyCode === 13) login(loginEmail, loginPassword, navigate) }}
+                        value={loginUsername} // Valor controlado
+                        onChange={(e) => setLoginUsername(e.target.value)}
+                        onKeyDown={(e) => { if (e.keyCode === 13) login(loginUsername, loginPassword, navigate) }}
                         sx={{
                             color: 'tertiary.contrastText',
                             '& .MuiInputLabel-root': {
@@ -112,11 +115,11 @@ export default function LoginRegisterTabs() {
                         type="password"
                         value={loginPassword}
                         onChange={(e) => setLoginPassword(e.target.value)} // Corregido el onChange
-                        onKeyDown={(e) => { if (e.keyCode === 13) login(loginEmail, loginPassword, navigate) }}
+                        onKeyDown={(e) => { if (e.keyCode === 13) login(loginUsername, loginPassword, navigate) }}
                         variant="standard" />
                 </Box>
                 <div style={{ justifyContent: 'center', marginTop: '30px' }}>
-                    <BotonGenerico texto={"Login"} handleClick={() => login(loginEmail, loginPassword, navigate)}></BotonGenerico>
+                    <BotonGenerico texto={"Login"} handleClick={() => login(loginUsername, loginPassword, navigate)}></BotonGenerico>
                 </div>
             </CustomTabPanel>
             <CustomTabPanel value={value} index={1}>
@@ -131,7 +134,29 @@ export default function LoginRegisterTabs() {
                         error={isEmailInvalid}
                         value={signInEmail} // Valor controlado
                         onChange={handleEmail}
-                        helperText={isEmailInvalid ? "Please enter a valid email address." : ""}
+                        slotProps={{
+                            formHelperText: {
+                                sx: { fontSize: '20px' } // Cambia el tamaño del texto del error
+                            }
+                        }}
+                        onKeyDown={(e) => handleRegister(e)}
+                        sx={{
+                            color: 'tertiary.contrastText',
+                            '& .MuiInputLabel-root': {
+                                fontSize: '1.3rem',
+                            }
+                        }}
+                        variant="standard" />
+                    <FormHelperText sx={{ fontSize: '18px', color: '#79444A' }}>
+                        {isEmailInvalid ? "Please enter a valid email address." : ""}
+                    </FormHelperText>
+                    <TextField
+                        id="standard-username-input"
+                        label="Username"
+                        required
+                        error={isUsernameInvalid}
+                        value={signInUsername}
+                        onChange={handleUsername}
                         onKeyDown={(e) => handleRegister(e)}
                         sx={{
                             color: 'tertiary.contrastText',
@@ -140,6 +165,9 @@ export default function LoginRegisterTabs() {
                             },
                         }}
                         variant="standard" />
+                    <FormHelperText sx={{ fontSize: '18px', color: '#79444A' }}>
+                        {isUsernameInvalid ? "Please enter a valid username." : ""}
+                    </FormHelperText>
                     <TextField
                         required
                         sx={{
@@ -153,9 +181,11 @@ export default function LoginRegisterTabs() {
                         type="password"
                         value={signInPassword}
                         onChange={handlePassword}
-                        helperText={isPasswordInvalid ? "Must be at least 8 characters, contain a symbol and an uppercase letter." : ""}
                         onKeyDown={(e) => handleRegister(e)}
                         variant="standard" />
+                        <FormHelperText sx={{ fontSize: '18px', color: '#79444A' }}>
+                        {isPasswordInvalid ? "Must be at least 8 characters, contain a symbol and an uppercase letter." : ""}
+                    </FormHelperText>
                 </Box>
                 <div style={{ display: 'flex', justifyContent: 'center', marginTop: '30px' }}>
                     <BotonGenerico texto={"Sign Up"} handleClick={handleRegister}></BotonGenerico>
