@@ -139,14 +139,13 @@ def get_current_user():
 
     return jsonify({
         "id": user.id,
-        "username": user.username,
-        "availableLevels": user.availableLevels
+        "username": user.username
     })
 
-@app.route("/<int:id>/userLevel",methods=["PUT"])
+""" @app.route("/<int:id>/userLevel",methods=["PUT"])
 def update_levels(id):
     data = request.get_json(force=True)
-    updated_levels = data.get("availableLevels")  # El front manda la lista completa
+      # El front manda la lista completa
 
     if not isinstance(updated_levels, list):
         return jsonify({"error": "availableLevels must be a list"}), 400
@@ -164,7 +163,7 @@ def update_levels(id):
     return jsonify({
         "message": "User levels updated successfully.",
         "availableLevels": user.availableLevels
-    }), 200
+    }), 200 """
 
 
 
