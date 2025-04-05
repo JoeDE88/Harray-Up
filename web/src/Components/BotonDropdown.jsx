@@ -3,6 +3,7 @@ import { Button, Icon } from "@mui/material";
 export function BotonDropDown({texto,funcion}){
     return (
         <Button
+        size="medium"
         onClick={funcion}
         color="tertiary"
         variant='contained'

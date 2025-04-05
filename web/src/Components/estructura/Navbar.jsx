@@ -5,7 +5,7 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Watermelon from '../../assets/icons/watermelon.png'
-import { Button } from '@mui/material';
+import { Button, Container } from '@mui/material';
 import { getAllLevels } from '../../services/api/api';
 import { UserContext } from '../../Contexts/UserContext';
 import { isEmpty } from "lodash";
@@ -25,25 +25,25 @@ export default function Navbar() {
 
   return (
     <>
-      <Box sx={{ width: 1, borderRadius: 1 }}>
         <AppBar position="static" color="primary" sx={{ borderRadius: 1 }}>
-          <Toolbar>
-            <Box component="img" sx={{ imageRendering:'pixelated', height: 60 }} alt="Your logo." src={Watermelon} />
-            <Typography color="secondary" variant="h3" component="div" sx={{ flexGrow: 1 }}>
-              Harray Up!
-            </Typography>
-            {!isEmpty(user) ? (
-            <BotonGenerico texto={"Logout"} handleClick={()=> logout()} />              
-            ) : (<Button
-              component={RouterLink}
-              to="/login"
-              color='tertiary'
-              variant='contained'
-              style={{ fontSize: '20px', marginRight: '30px' }}
-              onClick={() => logout()}>Logout</Button>)}
-          </Toolbar>
+          <Container maxWidth="false">
+            <Toolbar>
+              <Box component="img" sx={{ imageRendering: 'pixelated', height: 60 }} alt="Your logo." src={Watermelon} />
+              <Typography color="secondary" variant="h3" component="div" sx={{ flexGrow: 1 }}>
+                Harray Up!
+              </Typography>
+              {!isEmpty(user) ? (
+                <BotonGenerico texto={"Logout"} handleClick={() => logout()} />
+              ) : (<Button
+                component={RouterLink}
+                to="/login"
+                color='tertiary'
+                variant='contained'
+                style={{ fontSize: '20px', marginRight: '30px' }}
+                onClick={() => logout()}>Logout</Button>)}
+            </Toolbar>
+          </Container>
         </AppBar>
-      </Box>
     </>
   );
 }

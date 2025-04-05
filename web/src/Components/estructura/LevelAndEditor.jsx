@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { Box, Grid2 } from "@mui/material";
 import EditorBox from "../EditorBox";
 import LevelBox from "../LevelBox";
 
@@ -6,14 +6,14 @@ export default function LevelAndEditor() {
 
     return (
         <>
-            <Box sx={{ display: "flex", gap: 2, marginTop: 2 }}>
-                <Box sx={{ width: "60%",height:'550px',backgroundColor:'grey' }}>
+            <Grid2 container spacing={1}>
+                <Grid2 size={{xs:6, md:8}}>
                     <LevelBox />
-                </Box>
-                <Box sx={{ width: "40%" }}>
+                </Grid2>
+                <Grid2 size={{xs:6, md:4}}>
                     <EditorBox />
-                </Box>
-            </Box>
+                </Grid2>
+            </Grid2>
         </>
     )
 }
