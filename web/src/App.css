@@ -1,4 +1,9 @@
 /* Fondo rojo a la primera línea */
+body {
+  min-height: 100vh;
+  margin: 0;
+}
+
 .highlight-line {
     background-color: red !important;
   }
