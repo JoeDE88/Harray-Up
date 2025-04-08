@@ -1,4 +1,5 @@
-<h1 align="left">🍉🍍 Harray Up! </h1>
+
+<h1 align="left"><img src="https://github.com/JoeDE88/Harray-Up/blob/main/web/src/assets/icons/watermelon.png" alt="Harray Up banner" width="40" height="40"/><img src="https://github.com/JoeDE88/Harray-Up/blob/main/web/src/assets/icons/pineapple.png" alt="Harray Up banner" width="40" height="40"/> Harray Up! </h1>
 
 ###
 
@@ -18,3 +19,9 @@ This is where Harray Up! comes in, an educational and fun web app designed to he
 - **Backend**: Flask (Python)  
 - **Styling**: Material UI
 - **API Communication**: RESTful API
+
+## 🔮 Future Improvements
+
+- Unlockable levels or difficulty modes
+- Time trial 
+- Multiplayer mode for learning with friends
