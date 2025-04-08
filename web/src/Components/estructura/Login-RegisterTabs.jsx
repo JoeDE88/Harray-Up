@@ -77,7 +77,7 @@ export default function LoginRegisterTabs() {
     const navigate = useNavigate();
 
     return (
-        <Box sx={{ width: '100%', maxWidth: '600px', textAlign: 'center', padding: 6, pb: 0, fontSize: '2rem', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <Box sx={{ width: '100%', maxWidth: '700px', textAlign: 'center', padding: 6, pb: 0, fontSize: '2rem', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <Box sx={{ borderBottom: 2, borderColor: 'tertiary.main', display: 'flex', justifyContent: 'center' }}>
                 <Tabs value={value} onChange={handleChangeTab} aria-label="basic tabs example" centered>
                     <Tab label="Login" sx={{ fontSize: '1.8rem', minWidth: 'auto' }} {...a11yProps(0)} />
