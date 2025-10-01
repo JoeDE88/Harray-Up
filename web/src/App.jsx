@@ -10,8 +10,8 @@ function App() {
   return (
     <>
     <Routes>
-      <Route path="/login" element={<LoginRedirect/>}/>
-      <Route element={<GuardedRoutes/>}>
+      {/* <Route path="/login" element={<LoginRedirect/>}/> */}
+      {/* <Route element={<GuardedRoutes/>}> */}
         {routesConfig.map((route)=>{
           return(
             <Route
@@ -21,7 +21,7 @@ function App() {
             />
           )
         })}
-        </Route>
+        {/* </Route> */}
     </Routes>
     </>
   )

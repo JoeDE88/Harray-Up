@@ -36,7 +36,6 @@ export default function LevelDropdown({ levels }) {
 
     return (
         <div>
-            <Box sx={{padding: 2}}>
                 <BotonDropDown texto={`Level ${level.id}`} funcion={handleClick}></BotonDropDown>
                 <Menu
                     color="tertiary"
@@ -57,7 +56,6 @@ export default function LevelDropdown({ levels }) {
                         </MenuItem>
                     ))}
                 </Menu>
-            </Box>
         </div>
     );
 }

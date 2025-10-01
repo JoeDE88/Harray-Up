@@ -1,7 +1,5 @@
-import Button from '@mui/material/Button';
-
-export default function BotonGenerico({texto,handleClick,sx}) {
+export default function BotonGenerico({texto,handleClick}) {
     return (
-        <Button size="medium" sx={sx} onClick={handleClick} color="tertiary" variant='contained' style={{ fontSize: '1.2rem'}}>{texto}</Button>
+        <button className='btn' onClick={handleClick}>{texto}</button>
     )
 }
