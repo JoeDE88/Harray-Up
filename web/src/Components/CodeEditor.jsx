@@ -78,7 +78,7 @@ function CodeEditor() {
   const handleRun = () => {
     if (!checkCodeModification(startIndex, endIndex)) {
       setMessage("You cannot modify lines outside the marks.");
-      return;
+      ;
     }
 
     try {
@@ -133,14 +133,14 @@ function CodeEditor() {
           onMount={handleEditorDidMount}      // Aquí
           onChange={(value) => setCode(value)} // Mantener el estado del código
         />
-        <Box sx={{display: 'flex',alignItems: 'center', height: '21.5%'}}>
-          <Box sx={{display:'flex',  justifyContent: 'space-evenly',  width: '50%' }}>
-            <BotonGenerico texto={"Reset"} funcion={handleReset} sx={{ '&:hover': { backgroundColor: '#d32f2f' } }} />
-            <BotonGenerico texto={"Run"} funcion={handleRun} sx={{ '&:hover': { backgroundColor: '#303f9f' } }} />
+        <Box sx={{ display: 'flex', alignItems: 'center', height: '21.5%' }}>
+          <div id='botones'>
+            <BotonGenerico texto={"Reset"} handleClick={handleReset} sx={{ '&:hover': { backgroundColor: '#d32f2f' } }} />
+            <BotonGenerico texto={"Run"} handleClick={handleRun} sx={{ '&:hover': { backgroundColor: '#303f9f' } }} />
             {buttonIsVisible &&
-              <BotonGenerico texto={"Next"} funcion={nextLevel} sx={{ '&:hover': { backgroundColor: '#303f9f' } }} />
+              <BotonGenerico texto={"Next"} handleClick={nextLevel} sx={{ '&:hover': { backgroundColor: '#303f9f' } }} />
             }
-          </Box>
+          </div>
           {/* Mostrar el mensaje a la derecha de los botones */}
           {message && (
             <Typography

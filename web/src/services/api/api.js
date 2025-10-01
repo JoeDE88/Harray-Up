@@ -1,4 +1,4 @@
-export const baseURL = "/api"
+export const baseURL = "https://solid-guacamole-x5vwvpgp7q7jhp66g-8000.app.github.dev"
 
 export const postLogin = (username, password) => {
   return fetch(`${baseURL}/login`, {
