@@ -1,6 +1,5 @@
 import { useState, useRef, useContext, useEffect } from 'react';
 import { Editor } from '@monaco-editor/react';
-import { Box, Typography } from '@mui/material';
 import { useLevelContext } from '../Contexts/LevelContext';
 import { levelList } from '../levels';
 import BotonGenerico from './BotonGenerico';
@@ -118,11 +117,14 @@ function CodeEditor() {
   };
 
   return (
-    <Box>
-      <Box sx={{ height: '500px' }}>
-        <Typography sx={{ fontSize: '26px', paddingTop: '4px', marginLeft: '10px' }}>Prueba tu código aquí.</Typography>
+    <div className='right-box'>
+      <div className='code-title'>
+        <p>Write your code here:</p>
+      </div>
+      <div className='editor'>
         <Editor
-          height="80%"
+          height="100%"
+          width="100%"
           theme="vs-dark"
           value={code}
           options={{
@@ -133,31 +135,26 @@ function CodeEditor() {
           onMount={handleEditorDidMount}      // Aquí
           onChange={(value) => setCode(value)} // Mantener el estado del código
         />
-        <Box sx={{ display: 'flex', alignItems: 'center', height: '21.5%' }}>
-          <div id='botones'>
-            <BotonGenerico texto={"Reset"} handleClick={handleReset} sx={{ '&:hover': { backgroundColor: '#d32f2f' } }} />
-            <BotonGenerico texto={"Run"} handleClick={handleRun} sx={{ '&:hover': { backgroundColor: '#303f9f' } }} />
-            {buttonIsVisible &&
-              <BotonGenerico texto={"Next"} handleClick={nextLevel} sx={{ '&:hover': { backgroundColor: '#303f9f' } }} />
-            }
-          </div>
-          {/* Mostrar el mensaje a la derecha de los botones */}
+      </div>
+      <div className='btnsandmsg'>
+        <div id='botones'>
+          <BotonGenerico texto={"Reset"} handleClick={handleReset} sx={{ '&:hover': { backgroundColor: '#d32f2f' } }} />
+          <BotonGenerico texto={"Run"} handleClick={handleRun} sx={{ '&:hover': { backgroundColor: '#303f9f' } }} />
+          {buttonIsVisible &&
+            <BotonGenerico texto={"Next"} handleClick={nextLevel} sx={{ '&:hover': { backgroundColor: '#303f9f' } }} />
+          }
+        </div>
+        {/* Mostrar el mensaje a la derecha de los botones */}
+        <div className='message'>
           {message && (
-            <Typography
-              sx={{
-                marginLeft: 2,
-                fontSize: '25px',
-                color: 'tertiary.main',
-                display: 'flex',
-                alignItems: 'center' // Centra verticalmente el mensaje
-              }}
+            <div
             >
               {message}
-            </Typography>
+            </div>
           )}
-        </Box>
-      </Box>
-    </Box>
+        </div>
+      </div>
+    </div>
   );
 }
 

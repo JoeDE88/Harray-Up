@@ -7,7 +7,7 @@ export default function LevelBox() {
     const { level } = useLevelContext();
 
     return (
-            <div className="box">
+            <div className="left-box">
                 <div className="level">
                     <LevelDropdown levels={level}></LevelDropdown>
                 </div>
@@ -17,11 +17,9 @@ export default function LevelBox() {
                         <p>{level.instructions}</p>
                 </div>
                 <div className="level" id="right">
-                        <Typography sx={{ color: 'primary.main', fontSize: '1.5rem', marginBottom: '10px' }}>
-                            Expected result
-                        </Typography>
+                        <p>Expected result</p>
                         <BuildArray scale={3} array={JSON.parse(level.goalArray)} />
-                        </div>
+                    </div>
                 </div>
     )
 }
