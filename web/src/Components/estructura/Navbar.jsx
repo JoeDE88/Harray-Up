@@ -25,7 +25,7 @@ export default function Navbar() {
 
   return (
     <>
-        <AppBar position="static" color="primary" sx={{ borderRadius: 1 }}>
+        <AppBar position="static" color="primary">
           <Container maxWidth="false">
             <Toolbar>
               <Box component="img" sx={{ imageRendering: 'pixelated', height: 60 }} alt="Your logo." src={Watermelon} />
