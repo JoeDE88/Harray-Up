@@ -1,7 +1,7 @@
-export function BotonDropDown({ texto, funcion }) {
+export function BotonDropDown({ texto}) {
     return (
         <>
-            <button className="btn dropdown" onClick={funcion}>{texto} &#x2BC6;</button>
+            <a className="dropbtn">{texto} &#x2BC6;</a>
         </>
     )
 }
