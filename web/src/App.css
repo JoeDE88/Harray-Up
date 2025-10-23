@@ -109,6 +109,12 @@ a {
   width: 70%;
 }
 
+#title {
+  color:#D2C9A5;
+  font-size: 60px;
+  margin: 20px;
+}
+
 .level {
   padding: 2rem;
   font-size: 1.2rem;
