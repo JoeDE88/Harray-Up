@@ -30,6 +30,42 @@ body::before {
   width: 100vw;
 }
 
+.main__container {
+  display: flex;
+  flex-direction: column;
+}
+
+.tab__header {
+  display: flex;
+  list-style: none;
+  gap: 1rem;
+  height: 30px;
+  background-color: #4B3D44;
+}
+
+.tab__header li {
+  flex: 1;
+  cursor: pointer;
+  text-align: center;
+}
+
+.tab__container {
+  display: flex;
+  flex-direction: column;
+}
+
+.tab__content {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+  gap: 4rem;
+}
+
+.active {
+  background-color: white;
+}
+
 .left-box {
   margin: 0.8rem;
   transition: all 0.8s ease;
@@ -59,6 +95,30 @@ body::before {
   flex-direction: column;
   text-align: center;
   color: #4B3D44;
+}
+
+.login-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.login-title {
+  justify-content: center;
+  width: 30%;
+  display: flex;
+  background-color: #4B3D44;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  box-shadow: 0px 0.5px 4px #9a9999b3, 0px 1px 2px 2px #9d9d9d88;
+}
+
+.login-body {
+  background-color: #D2C9A5;
+  width: 30%;
+  box-shadow: 0px 0.5px 4px #9a9999b3, 0px 1px 2px 2px #9d9d9d88;
 }
 
 .text {
