@@ -60,6 +60,7 @@
 
 a {
   padding: 12px;
+  font-size: 20px;
   display: block;
   text-decoration: none;
   background-color: #79444A;
@@ -79,25 +80,17 @@ a {
 
 .dropdown:focus .dropdown-content {
   outline: none;
-  transform: translateY(20px);
+  transform: translateY(25px);
   visibility: visible;
   opacity: 1;
 }
 
 .dropdown .db2 {
   position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
   opacity: 0;
   cursor: pointer;
   z-index: 10;
   display: none;
-}
-
-.dropdown:focus .db2 {
-  display: inline-block;
 }
 
 .dropdown .db2:focus .dropdown-content {
@@ -156,7 +149,7 @@ a {
   }
 }
 
-.left-box:has(.dropdown:focus-within) .level2 {
+.left-box:has(.dropdown:focus-within) .level2,.left-box:has(.dropdown:focus-within) .dropbtn{
   filter: blur(0.8px) brightness(0.5);
   transition: filter 0.5s ease;
 }
