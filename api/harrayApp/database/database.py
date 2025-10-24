@@ -1,9 +1,9 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, declarative_base
 
-POSTGRESQL_DATABASE_URL = 'postgresql://postgres:Sampdoria1.@localhost:5432/harrayUpDatabase'
+SQLITE_DATABASE_URL = 'sqlite:///.harrayup_db'
 
-engine = create_engine(POSTGRESQL_DATABASE_URL)
+engine = create_engine(SQLITE_DATABASE_URL, connect_args={'check_same_thread': False})
 
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
